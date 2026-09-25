@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#17130e">
+
+<title>Painel — Jornada de Sucot</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+:root{
+  --fundo:#17130e;
+  --painel:#211b14;
+  --painel2:#2a2218;
+  --dourado:#c89a4b;
+  --douradoClaro:#e1bd7c;
+  --texto:#f4ead8;
+  --cinza:#9e927f;
+  --verde:#71835c;
+  --verdeClaro:#9eb085;
+  --vermelho:#a9584e;
+  --borda:rgba(214,173,102,.15);
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 80% 0%,rgba(176,124,46,.12),transparent 30%),
+    var(--fundo);
+  color:var(--texto);
+  font-family:'Montserrat',sans-serif;
+}
+
+button,input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.container{
+  width:min(1200px,calc(100% - 32px));
+  margin:auto;
+  padding:40px 0 70px;
+}
+
+
+/* ==========================
+   CABEÇALHO
+========================== */
+
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:25px;
+  margin-bottom:35px;
+}
+
+.mini{
+  color:var(--dourado);
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+}
+
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:54px;
+  line-height:.95;
+  color:var(--douradoClaro);
+  font-weight:600;
+  margin-top:8px;
+}
+
+.status-live{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color:var(--verdeClaro);
+}
+
+.live-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:var(--verdeClaro);
+  box-shadow:0 0 13px var(--verdeClaro);
+  animation:pulsar 1.6s infinite;
+}
+
+@keyframes pulsar{
+  50%{opacity:.35}
+}
+
+
+/* ==========================
+   NÚMEROS
+========================== */
+
+.metricas{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:13px;
+  margin-bottom:28px;
+}
+
+.metrica{
+  background:linear-gradient(145deg,var(--painel),#1d1812);
+  border:1px solid var(--borda);
+  border-radius:19px;
+  padding:22px;
+}
+
+.metrica span{
+  display:block;
+  color:var(--cinza);
+  font-size:9px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+}
+
+.metrica strong{
+  font-family:'Cormorant Garamond',serif;
+  font-size:38px;
+  color:var(--texto);
+}
+
+
+/* ==========================
+   AVISO DE CONCLUSÃO
+========================== */
+
+.alerta{
+  display:none;
+  position:relative;
+  margin-bottom:25px;
+  padding:22px 25px;
+  border:1px solid rgba(200,154,75,.45);
+  border-radius:20px;
+  background:
+    radial-gradient(circle at 90%,rgba(200,154,75,.15),transparent 40%),
+    var(--painel2);
+}
+
+.alerta-label{
+  font-size:9px;
+  letter-spacing:3px;
+  color:var(--dourado);
+  margin-bottom:6px;
+}
+
+.alerta strong{
+  font-family:'Cormorant Garamond',serif;
+  font-size:29px;
+  color:var(--douradoClaro);
+}
+
+
+/* ==========================
+   CONTROLES
+========================== */
+
+.controles{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:22px;
+  flex-wrap:wrap;
+}
+
+.filtros{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.filtro{
+  border:1px solid var(--borda);
+  background:var(--painel);
+  color:var(--cinza);
+  padding:10px 14px;
+  border-radius:30px;
+  font-size:10px;
+}
+
+.filtro.ativo{
+  background:var(--dourado);
+  color:#1c160e;
+  border-color:var(--dourado);
+  font-weight:700;
+}
+
+.busca{
+  border:1px solid var(--borda);
+  background:var(--painel);
+  color:var(--texto);
+  border-radius:30px;
+  padding:11px 17px;
+  outline:none;
+  width:230px;
+}
+
+.busca::placeholder{
+  color:#716858;
+}
+
+
+/* ==========================
+   PARTICIPANTES
+========================== */
+
+.lista{
+  display:grid;
+  gap:11px;
+}
+
+.participante{
+  display:grid;
+  grid-template-columns:minmax(180px,1.7fr) 1fr .7fr 1fr;
+  align-items:center;
+  gap:20px;
+
+  padding:18px 20px;
+  border:1px solid var(--borda);
+  border-radius:17px;
+  background:var(--painel);
+
+  transition:.2s;
+}
+
+.participante:hover{
+  border-color:rgba(200,154,75,.35);
+}
+
+.nome{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;
+  font-weight:600;
+}
+
+.hora{
+  margin-top:3px;
+  color:var(--cinza);
+  font-size:9px;
+}
+
+.progresso-area{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.pontos{
+  display:flex;
+  gap:6px;
+}
+
+.ponto{
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  border:1px solid #655743;
+}
+
+.ponto.ok{
+  background:var(--dourado);
+  border-color:var(--dourado);
+}
+
+.fracao{
+  font-size:12px;
+  font-weight:700;
+  color:var(--douradoClaro);
+}
+
+.estado{
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.andamento{
+  color:var(--cinza);
+}
+
+.completo{
+  color:var(--verdeClaro);
+}
+
+.premio{
+  text-align:right;
+}
+
+.btn-entregar{
+  border:1px solid var(--dourado);
+  background:transparent;
+  color:var(--douradoClaro);
+  padding:10px 13px;
+  border-radius:25px;
+  font-size:9px;
+  letter-spacing:1px;
+}
+
+.btn-entregar:hover{
+  background:var(--dourado);
+  color:#1a150e;
+}
+
+.entregue{
+  color:var(--verdeClaro);
+  font-size:10px;
+}
+
+.sem-premio{
+  color:#62594c;
+  font-size:10px;
+}
+
+
+/* ==========================
+   VAZIO
+========================== */
+
+.vazio{
+  padding:60px 20px;
+  text-align:center;
+  color:var(--cinza);
+  border:1px dashed var(--borda);
+  border-radius:20px;
+}
+
+.vazio strong{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  color:var(--texto);
+  font-size:25px;
+  margin-bottom:8px;
+}
+
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:800px){
+
+  .container{
+    width:min(100% - 22px,700px);
+    padding-top:25px;
+  }
+
+  header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  h1{
+    font-size:43px;
+  }
+
+  .metricas{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .metrica{
+    padding:17px;
+  }
+
+  .metrica strong{
+    font-size:32px;
+  }
+
+  .busca{
+    width:100%;
+  }
+
+  .participante{
+    grid-template-columns:1fr;
+    gap:13px;
+  }
+
+  .premio{
+    text-align:left;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+  <div>
+    <div class="mini">
+      Ministério Apostólico Koinonia
+    </div>
+
+    <h1>
+      Jornada de Sucot
+    </h1>
+
+    <div class="mini" style="margin-top:12px">
+      Painel de acompanhamento
+    </div>
+  </div>
+
+  <div class="status-live">
+    <span class="live-dot"></span>
+    ATUALIZAÇÃO EM TEMPO REAL
+  </div>
+
+</header>
+
+
+<!-- MÉTRICAS -->
+
+<section class="metricas">
+
+  <div class="metrica">
+    <span>Participantes</span>
+    <strong id="mParticipantes">0</strong>
+  </div>
+
+  <div class="metrica">
+    <span>Em andamento</span>
+    <strong id="mAndamento">0</strong>
+  </div>
+
+  <div class="metrica">
+    <span>Concluíram</span>
+    <strong id="mConcluidos">0</strong>
+  </div>
+
+  <div class="metrica">
+    <span>Prêmios entregues</span>
+    <strong id="mEntregues">0</strong>
+  </div>
+
+</section>
+
+
+<!-- ALERTA -->
+
+<div id="alerta" class="alerta">
+
+  <div class="alerta-label">
+    ✦ NOVA JORNADA COMPLETA
+  </div>
+
+  <strong id="alertaNome"></strong>
+
+</div>
+
+
+<!-- FILTROS -->
+
+<section class="controles">
+
+  <div class="filtros">
+
+    <button
+      class="filtro ativo"
+      data-filtro="todos">
+      Todos
+    </button>
+
+    <button
+      class="filtro"
+      data-filtro="andamento">
+      Em andamento
+    </button>
+
+    <button
+      class="filtro"
+      data-filtro="concluidos">
+      Concluíram
+    </button>
+
+    <button
+      class="filtro"
+      data-filtro="pendentes">
+      Prêmio pendente
+    </button>
+
+    <button
+      class="filtro"
+      data-filtro="entregues">
+      Entregues
+    </button>
+
+  </div>
+
+
+  <input
+    id="busca"
+    class="busca"
+    type="search"
+    placeholder="Buscar participante...">
+
+</section>
+
+
+<!-- LISTA -->
+
+<div id="lista" class="lista">
+
+  <div class="vazio">
+    <strong>Carregando participantes...</strong>
+    Conectando à Jornada de Sucot.
+  </div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+/* ===================================================
+   FIREBASE
+=================================================== */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  onSnapshot,
+  doc,
+  updateDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+
+  apiKey:
+  "AIzaSyDRWRq6PsAmEkVjGMPdCz-UGwuIdnCJG9g",
+
+  authDomain:
+  "jornada-sucot.firebaseapp.com",
+
+  projectId:
+  "jornada-sucot",
+
+  storageBucket:
+  "jornada-sucot.firebasestorage.app",
+
+  messagingSenderId:
+  "9822470892",
+
+  appId:
+  "1:9822470892:web:5ec54e14a5dfd928e89bc9"
+
+};
+
+
+const firebaseApp =
+  initializeApp(firebaseConfig);
+
+const db =
+  getFirestore(firebaseApp);
+
+
+/* ===================================================
+   ESTADO
+=================================================== */
+
+let participantes = [];
+
+let filtroAtual =
+  "todos";
+
+let termoBusca =
+  "";
+
+let idsCompletosConhecidos =
+  new Set();
+
+let primeiraLeitura =
+  true;
+
+
+/* ===================================================
+   FIRESTORE EM TEMPO REAL
+=================================================== */
+
+const participantesRef =
+  collection(db,"participantes");
+
+
+onSnapshot(
+
+  participantesRef,
+
+  snapshot => {
+
+    participantes =
+      snapshot.docs.map(item => ({
+        id:item.id,
+        ...item.data()
+      }));
+
+
+    /*
+      Detecta quem acabou de completar.
+
+      Na primeira leitura não mostra alerta
+      para todos que já estavam completos.
+    */
+
+    const completosAgora =
+      participantes.filter(
+        p => p.jornadaCompleta === true
+      );
+
+
+    if(!primeiraLeitura){
+
+      completosAgora.forEach(p => {
+
+        if(
+          !idsCompletosConhecidos.has(p.id)
+        ){
+
+          mostrarAlerta(p.nome);
+
+        }
+
+      });
+
+    }
+
+
+    idsCompletosConhecidos =
+      new Set(
+        completosAgora.map(p => p.id)
+      );
+
+
+    primeiraLeitura = false;
+
+
+    atualizarTela();
+
+  },
+
+  erro => {
+
+    console.error(erro);
+
+    document.getElementById("lista")
+      .innerHTML = `
+
+        <div class="vazio">
+
+          <strong>
+            Não foi possível acessar o banco.
+          </strong>
+
+          Verifique a conexão e as regras
+          do Firestore.
+
+        </div>
+
+      `;
+
+  }
+
+);
+
+
+/* ===================================================
+   MÉTRICAS
+=================================================== */
+
+function atualizarMetricas(){
+
+  const total =
+    participantes.length;
+
+
+  const concluidos =
+    participantes.filter(
+      p => p.jornadaCompleta === true
+    ).length;
+
+
+  const andamento =
+    participantes.filter(
+      p => p.jornadaCompleta !== true
+    ).length;
+
+
+  const entregues =
+    participantes.filter(
+      p => p.premioEntregue === true
+    ).length;
+
+
+  document.getElementById(
+    "mParticipantes"
+  ).textContent =
+    total;
+
+
+  document.getElementById(
+    "mAndamento"
+  ).textContent =
+    andamento;
+
+
+  document.getElementById(
+    "mConcluidos"
+  ).textContent =
+    concluidos;
+
+
+  document.getElementById(
+    "mEntregues"
+  ).textContent =
+    entregues;
+
+}
+
+
+/* ===================================================
+   DATA / HORA
+=================================================== */
+
+function converterData(valor){
+
+  if(!valor){
+    return null;
+  }
+
+
+  /*
+    Timestamp do Firestore
+  */
+
+  if(
+    typeof valor.toDate === "function"
+  ){
+
+    return valor.toDate();
+
+  }
+
+
+  /*
+    Data em texto ISO
+  */
+
+  const data =
+    new Date(valor);
+
+
+  return isNaN(data)
+    ? null
+    : data;
+
+}
+
+
+function formatarHora(participante){
+
+  let data =
+    converterData(
+      participante.atualizadoEm
+    );
+
+
+  if(!data){
+
+    /*
+      Procura a última estação,
+      caso atualizadoEm ainda não esteja disponível.
+    */
+
+    const datas = [];
+
+    for(let i=1;i<=5;i++){
+
+      const estacao =
+        participante[`estacao${i}`];
+
+      if(
+        estacao &&
+        estacao.concluidaEm
+      ){
+
+        const d =
+          converterData(
+            estacao.concluidaEm
+          );
+
+        if(d){
+          datas.push(d);
+        }
+
+      }
+
+    }
+
+
+    if(datas.length){
+
+      data =
+        new Date(
+          Math.max(
+            ...datas.map(d =>
+              d.getTime()
+            )
+          )
+        );
+
+    }
+
+  }
+
+
+  if(!data){
+    return "Agora";
+  }
+
+
+  return data.toLocaleTimeString(
+    "pt-BR",
+    {
+      hour:"2-digit",
+      minute:"2-digit"
+    }
+  );
+
+}
+
+
+/* ===================================================
+   FILTRO
+=================================================== */
+
+function participantesFiltrados(){
+
+  return participantes
+
+    .filter(p => {
+
+      if(
+        filtroAtual === "andamento"
+      ){
+
+        return (
+          p.jornadaCompleta !== true
+        );
+
+      }
+
+
+      if(
+        filtroAtual === "concluidos"
+      ){
+
+        return (
+          p.jornadaCompleta === true
+        );
+
+      }
+
+
+      if(
+        filtroAtual === "pendentes"
+      ){
+
+        return (
+          p.jornadaCompleta === true &&
+          p.premioEntregue !== true
+        );
+
+      }
+
+
+      if(
+        filtroAtual === "entregues"
+      ){
+
+        return (
+          p.premioEntregue === true
+        );
+
+      }
+
+
+      return true;
+
+    })
+
+    .filter(p => {
+
+      if(!termoBusca){
+        return true;
+      }
+
+
+      return (
+        (p.nome || "")
+          .toLowerCase()
+          .includes(termoBusca)
+      );
+
+    })
+
+    /*
+      Quem completou aparece primeiro.
+      Depois, maior progresso.
+      Depois, ordem alfabética.
+    */
+
+    .sort((a,b) => {
+
+      if(
+        a.jornadaCompleta &&
+        !b.jornadaCompleta
+      ){
+        return -1;
+      }
+
+
+      if(
+        !a.jornadaCompleta &&
+        b.jornadaCompleta
+      ){
+        return 1;
+      }
+
+
+      const totalA =
+        Number(
+          a.totalConcluido || 0
+        );
+
+
+      const totalB =
+        Number(
+          b.totalConcluido || 0
+        );
+
+
+      if(totalA !== totalB){
+
+        return totalB - totalA;
+
+      }
+
+
+      return (
+        (a.nome || "")
+          .localeCompare(
+            b.nome || "",
+            "pt-BR"
+          )
+      );
+
+    });
+
+}
+
+
+/* ===================================================
+   PONTOS
+=================================================== */
+
+function criarPontos(estacoes){
+
+  const feitas =
+    Array.isArray(estacoes)
+      ? estacoes
+      : [];
+
+
+  let html =
+    `<div class="pontos">`;
+
+
+  for(let i=1;i<=5;i++){
+
+    html += `
+      <span
+        class="ponto
+        ${feitas.includes(i) ? "ok" : ""}">
+      </span>
+    `;
+
+  }
+
+
+  html += `</div>`;
+
+
+  return html;
+
+}
+
+
+/* ===================================================
+   RENDERIZAR PARTICIPANTES
+=================================================== */
+
+function renderizarLista(){
+
+  const lista =
+    document.getElementById("lista");
+
+
+  const dados =
+    participantesFiltrados();
+
+
+  if(!dados.length){
+
+    lista.innerHTML = `
+
+      <div class="vazio">
+
+        <strong>
+          Nenhum participante aqui.
+        </strong>
+
+        Assim que alguém participar,
+        aparecerá automaticamente.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  lista.innerHTML =
+    dados.map(p => {
+
+      const total =
+        Number(
+          p.totalConcluido || 0
+        );
+
+
+      const completo =
+        p.jornadaCompleta === true;
+
+
+      const entregue =
+        p.premioEntregue === true;
+
+
+      let premioHTML = `
+
+        <span class="sem-premio">
+          —
+        </span>
+
+      `;
+
+
+      if(
+        completo &&
+        !entregue
+      ){
+
+        premioHTML = `
+
+          <button
+            class="btn-entregar"
+            data-id="${p.id}"
+            data-nome="${escapeHTML(p.nome || "")}">
+            🎁 MARCAR COMO ENTREGUE
+          </button>
+
+        `;
+
+      }
+
+
+      if(entregue){
+
+        premioHTML = `
+
+          <span class="entregue">
+            ✓ PRESENTE ENTREGUE
+          </span>
+
+        `;
+
+      }
+
+
+      return `
+
+        <article class="participante">
+
+          <div>
+
+            <div class="nome">
+              ${escapeHTML(p.nome || "Sem nome")}
+            </div>
+
+            <div class="hora">
+              Última atividade:
+              ${formatarHora(p)}
+            </div>
+
+          </div>
+
+
+          <div class="progresso-area">
+
+            ${criarPontos(p.estacoes)}
+
+            <span class="fracao">
+              ${total}/5
+            </span>
+
+          </div>
+
+
+          <div>
+
+            ${
+              completo
+
+              ? `
+                <span class="estado completo">
+                  🏆 JORNADA COMPLETA
+                </span>
+              `
+
+              : `
+                <span class="estado andamento">
+                  EM ANDAMENTO
+                </span>
+              `
+            }
+
+          </div>
+
+
+          <div class="premio">
+            ${premioHTML}
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+
+  /*
+    Adiciona evento aos botões
+    criados dinamicamente.
+  */
+
+  document
+    .querySelectorAll(
+      ".btn-entregar"
+    )
+    .forEach(botao => {
+
+      botao.addEventListener(
+        "click",
+        () => {
+
+          marcarEntregue(
+            botao.dataset.id,
+            botao.dataset.nome
+          );
+
+        }
+      );
+
+    });
+
+}
+
+
+/* ===================================================
+   SEGURANÇA VISUAL
+=================================================== */
+
+function escapeHTML(texto){
+
+  const div =
+    document.createElement("div");
+
+  div.textContent =
+    texto;
+
+  return div.innerHTML;
+
+}
+
+
+/* ===================================================
+   ENTREGAR PRÊMIO
+=================================================== */
+
+async function marcarEntregue(
+  id,
+  nome
+){
+
+  const confirmar =
+    confirm(
+      `Confirmar entrega do presente para ${nome}?`
+    );
+
+
+  if(!confirmar){
+    return;
+  }
+
+
+  try{
+
+    const referencia =
+      doc(
+        db,
+        "participantes",
+        id
+      );
+
+
+    await updateDoc(
+      referencia,
+      {
+        premioEntregue:true,
+        premioEntregueEm:
+          serverTimestamp()
+      }
+    );
+
+    /*
+      Não precisamos atualizar manualmente.
+      onSnapshot fará isso sozinho.
+    */
+
+  }
+  catch(erro){
+
+    console.error(erro);
+
+    alert(
+      "Não foi possível registrar a entrega."
+    );
+
+  }
+
+}
+
+
+/* ===================================================
+   ALERTA DE NOVA CONCLUSÃO
+=================================================== */
+
+let timerAlerta;
+
+
+function mostrarAlerta(nome){
+
+  const alerta =
+    document.getElementById("alerta");
+
+
+  document.getElementById(
+    "alertaNome"
+  ).textContent =
+    `${nome} completou os 5 sinais. 🎁 Presente aguardando.`;
+
+
+  alerta.style.display =
+    "block";
+
+
+  clearTimeout(
+    timerAlerta
+  );
+
+
+  timerAlerta =
+    setTimeout(
+      () => {
+
+        alerta.style.display =
+          "none";
+
+      },
+      12000
+    );
+
+}
+
+
+/* ===================================================
+   ATUALIZAR
+=================================================== */
+
+function atualizarTela(){
+
+  atualizarMetricas();
+
+  renderizarLista();
+
+}
+
+
+/* ===================================================
+   FILTROS
+=================================================== */
+
+document
+  .querySelectorAll(".filtro")
+  .forEach(botao => {
+
+    botao.addEventListener(
+      "click",
+      () => {
+
+        document
+          .querySelectorAll(".filtro")
+          .forEach(item =>
+            item.classList.remove(
+              "ativo"
+            )
+          );
+
+
+        botao.classList.add(
+          "ativo"
+        );
+
+
+        filtroAtual =
+          botao.dataset.filtro;
+
+
+        renderizarLista();
+
+      }
+    );
+
+  });
+
+
+/* ===================================================
+   BUSCA
+=================================================== */
+
+document
+  .getElementById("busca")
+  .addEventListener(
+    "input",
+    evento => {
+
+      termoBusca =
+        evento.target.value
+          .trim()
+          .toLowerCase();
+
+
+      renderizarLista();
+
+    }
+  );
+
+</script>
+
+</body>
+</html>
