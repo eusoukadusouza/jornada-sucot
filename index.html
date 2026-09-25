@@ -237,7 +237,7 @@ button{
 
 
 /* =====================================================
-   HERO — ESTAÇÃO 1 / CABANA
+   ESTAÇÃO 1 — CABANA
 ===================================================== */
 
 .hero.estacao1{
@@ -276,28 +276,28 @@ button{
 
 
 /* =====================================================
-   HERO — ESTAÇÃO 2 / PROVISÃO
+   ESTAÇÃO 2 — PROVISÃO
 ===================================================== */
 
 .hero.estacao2{
   background:
     linear-gradient(
       to bottom,
-      rgba(255,242,207,.08) 0%,
+      rgba(255,242,207,.08),
       rgba(247,226,182,.08) 45%,
       #f7eddc 100%
     ),
     radial-gradient(
       circle at 68% 35%,
-      rgba(255,229,151,.95) 0%,
+      rgba(255,229,151,.95),
       rgba(236,182,87,.55) 14%,
       transparent 36%
     ),
     linear-gradient(
       180deg,
-      #d9b277 0%,
+      #d9b277,
       #c18d4c 47%,
-      #a9743c 100%
+      #a9743c
     );
 }
 
@@ -311,17 +311,16 @@ button{
   background:
     radial-gradient(
       ellipse at 20% 100%,
-      #d8b77b 0%,
+      #d8b77b,
       #b98b50 58%,
       transparent 60%
     ),
     radial-gradient(
       ellipse at 75% 100%,
-      #e2c58c 0%,
+      #e2c58c,
       #b78246 62%,
       transparent 64%
     );
-  opacity:.95;
 }
 
 .hero.estacao2::after{
@@ -334,36 +333,33 @@ button{
   color:rgba(255,244,208,.92);
   font-size:25px;
   letter-spacing:9px;
-  text-shadow:
-    0 3px 9px rgba(84,48,16,.30),
-    0 0 8px rgba(255,236,180,.45);
 }
 
 
 /* =====================================================
-   HERO — ESTAÇÃO 3 / ÁGUA
+   ESTAÇÃO 3 — ÁGUA
 ===================================================== */
 
 .hero.estacao3{
   background:
     linear-gradient(
       to bottom,
-      rgba(255,255,255,.02) 0%,
+      rgba(255,255,255,.02),
       rgba(220,239,235,.06) 45%,
       #f7eddc 100%
     ),
     radial-gradient(
       circle at 72% 23%,
-      rgba(255,229,154,.95) 0%,
+      rgba(255,229,154,.95),
       rgba(224,184,97,.45) 15%,
       transparent 36%
     ),
     linear-gradient(
       155deg,
-      #8da09a 0%,
+      #8da09a,
       #637a75 37%,
       #76694f 63%,
-      #ad814c 100%
+      #ad814c
     );
 }
 
@@ -378,18 +374,15 @@ button{
   background:
     linear-gradient(
       90deg,
-      transparent 0%,
+      transparent,
       rgba(209,242,237,.22) 15%,
       rgba(231,251,247,.82) 45%,
       rgba(172,220,215,.62) 70%,
-      transparent 100%
+      transparent
     );
   filter:blur(2px);
-  border-radius:
-    45% 55% 58% 42% /
-    20% 30% 70% 80%;
-  box-shadow:
-    0 0 35px rgba(220,245,238,.40);
+  border-radius:45% 55% 58% 42% / 20% 30% 70% 80%;
+  box-shadow:0 0 35px rgba(220,245,238,.40);
 }
 
 .hero.estacao3::after{
@@ -407,15 +400,116 @@ button{
 
 
 /* =====================================================
-   HERO — ESTAÇÕES FUTURAS
+   ESTAÇÃO 4 — LUZ
 ===================================================== */
 
-.hero.estacao4,
+.hero.estacao4{
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(30,32,45,.08),
+      rgba(45,42,47,.18) 48%,
+      #f7eddc 100%
+    ),
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(255,239,172,1) 0%,
+      rgba(255,196,79,.82) 10%,
+      rgba(217,145,50,.35) 24%,
+      transparent 43%
+    ),
+    linear-gradient(
+      155deg,
+      #29333e,
+      #4e4b45 52%,
+      #936d3c
+    );
+}
+
+.hero.estacao4::before{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:145px;
+  left:50%;
+  bottom:38px;
+  transform:translateX(-50%);
+  background:linear-gradient(#e6c889,#72522c);
+  box-shadow:
+    -52px 13px 0 -2px #aa824b,
+    52px 13px 0 -2px #aa824b;
+}
+
+.hero.estacao4::after{
+  content:"✦";
+  position:absolute;
+  left:50%;
+  top:68px;
+  transform:translateX(-50%);
+  color:#fff5c7;
+  font-size:52px;
+  text-shadow:
+    0 0 15px #fff1a7,
+    0 0 35px #ffc252,
+    0 0 70px #f0a433;
+}
+
+
+/* =====================================================
+   ESTAÇÃO 5 — COLHEITA
+===================================================== */
+
 .hero.estacao5{
   background:
-    linear-gradient(to bottom,transparent 45%,#f7eddc 100%),
-    radial-gradient(circle at 70% 48%,rgba(210,158,70,.48),transparent 18%),
-    linear-gradient(145deg,#dfc28f,#9d7950);
+    linear-gradient(
+      to bottom,
+      rgba(255,244,204,.03),
+      rgba(247,222,156,.10) 46%,
+      #f7eddc 100%
+    ),
+    radial-gradient(
+      circle at 74% 25%,
+      rgba(255,230,144,.98),
+      rgba(220,159,60,.45) 17%,
+      transparent 38%
+    ),
+    linear-gradient(
+      160deg,
+      #9c8753,
+      #718052 43%,
+      #9c713d 78%,
+      #b78b50
+    );
+}
+
+.hero.estacao5::before{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:20px;
+  height:155px;
+  background:
+    repeating-linear-gradient(
+      75deg,
+      transparent 0 18px,
+      rgba(224,189,91,.75) 19px 22px,
+      transparent 23px 34px
+    );
+  transform:skewY(-3deg);
+  opacity:.8;
+}
+
+.hero.estacao5::after{
+  content:"✦";
+  position:absolute;
+  right:65px;
+  top:65px;
+  color:#fff1b0;
+  font-size:38px;
+  text-shadow:
+    0 0 20px #ffce67,
+    0 0 45px rgba(255,188,72,.75);
 }
 
 
@@ -535,6 +629,7 @@ button{
     opacity:0;
     transform:translateY(15px);
   }
+
   to{
     opacity:1;
     transform:translateY(0);
@@ -684,200 +779,158 @@ button{
 </style>
 </head>
 
-
 <body>
 
 <main class="app">
 
 
-<!-- =====================================================
-     CADASTRO
-===================================================== -->
+<!-- CADASTRO -->
 
 <section id="cadastro" class="cadastro">
 
-  <div class="cadastro-box">
+<div class="cadastro-box">
 
-    <div class="cadastro-simbolo">
-      ✦
-    </div>
+  <div class="cadastro-simbolo">✦</div>
 
-    <div class="mini">
-      Ministério Apostólico Koinonia
-    </div>
+  <div class="mini">
+    Ministério Apostólico Koinonia
+  </div>
 
-    <h1>
-      Jornada<br>de Sucot
-    </h1>
+  <h1>
+    Jornada<br>de Sucot
+  </h1>
 
-    <div class="cadastro-sub">
-      5 sinais • uma mesma presença
-    </div>
+  <div class="cadastro-sub">
+    5 sinais • uma mesma presença
+  </div>
 
-    <p class="cadastro-texto">
-      Cinco sinais estão espalhados pela festa.
-      Cada descoberta revelará uma parte desta jornada.
-    </p>
+  <p class="cadastro-texto">
+    Cinco sinais estão espalhados pela festa.
+    Cada descoberta revelará uma parte desta jornada.
+  </p>
 
-    <div class="campo">
+  <div class="campo">
 
-      <label>
-        COMO DEVEMOS CHAMAR VOCÊ?
-      </label>
+    <label>
+      COMO DEVEMOS CHAMAR VOCÊ?
+    </label>
 
-      <input
-        id="campoNome"
-        type="text"
-        maxlength="60"
-        autocomplete="name"
-        placeholder="Digite seu nome">
-
-    </div>
-
-    <div
-      id="erroCadastro"
-      class="erro">
-    </div>
-
-    <button
-      id="btnCadastro"
-      class="botao">
-      INICIAR MINHA JORNADA →
-    </button>
+    <input
+      id="campoNome"
+      type="text"
+      maxlength="60"
+      autocomplete="name"
+      placeholder="Digite seu nome">
 
   </div>
+
+  <div id="erroCadastro" class="erro"></div>
+
+  <button id="btnCadastro" class="botao">
+    INICIAR MINHA JORNADA →
+  </button>
+
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     ENTRADA SEM ESTAÇÃO
-===================================================== -->
+<!-- ENTRADA SEM QR -->
 
-<section
-  id="inicio"
-  class="inicio">
+<section id="inicio" class="inicio">
 
-  <div>
+<div>
 
-    <div class="mini">
-      Jornada de
-    </div>
+  <div class="mini">
+    Jornada de
+  </div>
 
-    <h1>
-      Sucot
-    </h1>
+  <h1>Sucot</h1>
 
-    <p id="textoInicio">
-      Cinco sinais estão espalhados pela festa.
-    </p>
+  <p id="textoInicio">
+    Cinco sinais estão espalhados pela festa.
+  </p>
 
-    <div class="caixa">
+  <div class="caixa">
 
-      <strong>
-        ENCONTRE UM DOS 5 SINAIS
-      </strong>
+    <strong>
+      ENCONTRE UM DOS 5 SINAIS
+    </strong>
 
-      <br><br>
+    <br><br>
 
-      Escaneie um QR Code espalhado pelo evento
-      para descobrir uma estação.
-
-    </div>
+    Escaneie um QR Code espalhado pelo evento
+    para descobrir uma estação.
 
   </div>
+
+</div>
 
 </section>
 
 
-<!-- =====================================================
-     ESTAÇÃO
-===================================================== -->
+<!-- ESTAÇÃO -->
 
-<section
-  id="telaEstacao"
-  style="display:none">
-
+<section id="telaEstacao" style="display:none">
 
 <header class="topo">
 
-  <div>
+<div>
 
-    <div class="mini">
-      Jornada de
-    </div>
-
-    <div class="logo">
-      SUCOT
-    </div>
-
-    <div class="sublogo">
-      5 sinais • uma mesma presença
-    </div>
-
+  <div class="mini">
+    Jornada de
   </div>
 
-
-  <div class="numero-estacao">
-
-    <span class="mini">
-      Estação
-    </span>
-
-    <strong id="numeroTopo">
-    </strong>
-
-    <div
-      class="progresso"
-      id="progressoTopo">
-    </div>
-
+  <div class="logo">
+    SUCOT
   </div>
+
+  <div class="sublogo">
+    5 sinais • uma mesma presença
+  </div>
+
+</div>
+
+
+<div class="numero-estacao">
+
+  <span class="mini">
+    Estação
+  </span>
+
+  <strong id="numeroTopo"></strong>
+
+  <div
+    class="progresso"
+    id="progressoTopo">
+  </div>
+
+</div>
 
 </header>
 
 
-<div
-  class="hero"
-  id="hero">
-</div>
+<div class="hero" id="hero"></div>
 
 
 <section class="conteudo">
 
-<div
-  class="saudacao"
-  id="saudacao">
-</div>
+<div class="saudacao" id="saudacao"></div>
 
 
-<!-- =====================================================
-     PERGUNTA
-===================================================== -->
+<!-- PERGUNTA -->
 
 <div id="blocoPergunta">
 
-  <div
-    class="icone"
-    id="icone">
-  </div>
+  <div class="icone" id="icone"></div>
 
-  <h1
-    class="titulo"
-    id="titulo">
-  </h1>
+  <h1 class="titulo" id="titulo"></h1>
 
-  <div
-    class="profetico"
-    id="profetico">
-  </div>
+  <div class="profetico" id="profetico"></div>
 
   <div class="linha"></div>
 
-  <h2
-    class="pergunta"
-    id="pergunta">
-  </h2>
+  <h2 class="pergunta" id="pergunta"></h2>
 
   <div
     class="alternativas"
@@ -896,13 +949,9 @@ button{
 </div>
 
 
-<!-- =====================================================
-     REVELAÇÃO
-===================================================== -->
+<!-- REVELAÇÃO -->
 
-<div
-  id="blocoRevelacao"
-  class="revelacao">
+<div id="blocoRevelacao" class="revelacao">
 
   <div class="sinal">
     VOCÊ DESCOBRIU UM SINAL
@@ -920,8 +969,7 @@ button{
 
   <div class="versiculo">
 
-    <span id="versiculo">
-    </span>
+    <span id="versiculo"></span>
 
     <span
       id="referencia"
@@ -936,19 +984,15 @@ button{
       O SINAL PARA NÓS
     </small>
 
-    <p id="aplicacao">
-    </p>
+    <p id="aplicacao"></p>
 
   </div>
 
   <div class="concluida">
 
-    <div class="check">
-      ✓
-    </div>
+    <div class="check">✓</div>
 
-    <strong id="textoConcluida">
-    </strong>
+    <strong id="textoConcluida"></strong>
 
     <div
       id="progressoFinal"
@@ -1032,15 +1076,15 @@ const db =
 
 
 /* =====================================================
-   CONTEÚDO DAS ESTAÇÕES
+   CONTEÚDO DAS 5 ESTAÇÕES
 ===================================================== */
 
 const estacoes = {
 
 
-/* -----------------------------------------------------
-   ESTAÇÃO 01 — A CABANA
------------------------------------------------------ */
+/* =====================================================
+   01 — A CABANA
+===================================================== */
 
 1:{
 
@@ -1088,9 +1132,9 @@ const estacoes = {
 },
 
 
-/* -----------------------------------------------------
-   ESTAÇÃO 02 — A PROVISÃO
------------------------------------------------------ */
+/* =====================================================
+   02 — A PROVISÃO
+===================================================== */
 
 2:{
 
@@ -1138,9 +1182,9 @@ const estacoes = {
 },
 
 
-/* -----------------------------------------------------
-   ESTAÇÃO 03 — A ÁGUA
------------------------------------------------------ */
+/* =====================================================
+   03 — A ÁGUA
+===================================================== */
 
 3:{
 
@@ -1188,86 +1232,102 @@ const estacoes = {
 },
 
 
-/* -----------------------------------------------------
-   ESTAÇÃO 04 — EM CONSTRUÇÃO
------------------------------------------------------ */
+/* =====================================================
+   04 — A LUZ
+===================================================== */
 
 4:{
 
   nome:
-  "QUARTO SINAL",
+  "A LUZ",
 
   icone:
-  "✦",
+  "✨",
 
   profetico:
-  "A jornada continua",
+  "A luz que conduz",
 
   pergunta:
-  "Esta estação será revelada em breve.",
+  "Qual declaração de Jesus revela que Ele é a luz capaz de conduzir o homem para fora das trevas?",
 
   alternativas:[
-    "Descobrir este sinal"
+
+    "Eu sou a ressurreição e a vida.",
+
+    "Eu sou o bom pastor.",
+
+    "Eu sou a luz do mundo; quem me segue não andará em trevas.",
+
+    "Eu sou o caminho, a verdade e a vida."
+
   ],
 
-  correta:0,
+  correta:2,
 
   frase:
-  "VOCÊ ENCONTROU O QUARTO SINAL.",
+  "A PRESENÇA QUE ILUMINA TAMBÉM MOSTRA O CAMINHO.",
 
   explicacao:
-  "Esta experiência será construída aqui.",
+  "Sucot também ficou marcada, no período do Segundo Templo, por grandes celebrações de luz em Jerusalém. O Evangelho de João apresenta Jesus declarando: “Eu sou a luz do mundo”. A imagem aponta para uma verdade maior: em Cristo, a luz de Deus não apenas é contemplada — ela chama o homem a segui-lo.",
 
   versiculo:
-  "",
+  "“Eu sou a luz do mundo; quem me segue não andará em trevas, mas terá a luz da vida.”",
 
   referencia:
-  "",
+  "JOÃO 8:12",
 
   aplicacao:
-  "Continue a jornada."
+  "Deus não nos chama apenas para admirar sua luz. A luz de Cristo revela onde estamos e nos convida a caminhar em uma nova direção."
 
 },
 
 
-/* -----------------------------------------------------
-   ESTAÇÃO 05 — EM CONSTRUÇÃO
------------------------------------------------------ */
+/* =====================================================
+   05 — A COLHEITA
+===================================================== */
 
 5:{
 
   nome:
-  "QUINTO SINAL",
+  "A COLHEITA",
 
   icone:
-  "✦",
+  "🌾",
 
   profetico:
-  "A jornada se completa",
+  "O Deus que reúne",
 
   pergunta:
-  "Esta estação será revelada em breve.",
+  "Além de lembrar a jornada no deserto, Sucot também celebrava qual momento da vida de Israel?",
 
   alternativas:[
-    "Descobrir este sinal"
+
+    "O início da construção do Templo.",
+
+    "A reunião da colheita ao final do ciclo agrícola.",
+
+    "A escolha dos reis de Israel.",
+
+    "A travessia do rio Jordão."
+
   ],
 
-  correta:0,
+  correta:1,
 
   frase:
-  "VOCÊ ENCONTROU O QUINTO SINAL.",
+  "A JORNADA TERMINA COM UMA COLHEITA.",
 
   explicacao:
-  "Esta experiência será construída aqui.",
+  "Sucot também é chamada de Festa da Colheita ou Festa da Colheita Final. Depois de plantar, esperar e trabalhar, chegava o tempo de reunir os frutos. Por isso, a festa carregava gratidão pela provisão de Deus. As Escrituras também utilizam a imagem da colheita para falar do ajuntamento de pessoas e do cumprimento dos propósitos de Deus.",
 
   versiculo:
-  "",
+  "“Celebrarás a Festa da Colheita, no fim do ano, quando recolheres do campo o fruto do teu trabalho.”",
 
   referencia:
-  "",
+  "ÊXODO 23:16",
 
   aplicacao:
-  "Continue a jornada."
+  "Deus esteve presente, sustentou, saciou e iluminou o caminho. Agora a jornada termina lembrando que aquilo que Deus planta também possui um tempo de colheita."
 
 }
 
@@ -1275,7 +1335,7 @@ const estacoes = {
 
 
 /* =====================================================
-   ESTADO DO PARTICIPANTE
+   ESTADO
 ===================================================== */
 
 const params =
@@ -1308,7 +1368,7 @@ let alternativaSelecionada = null;
 
 
 /* =====================================================
-   GERAR ID
+   ID
 ===================================================== */
 
 function gerarId(){
@@ -1321,7 +1381,6 @@ function gerarId(){
     return crypto.randomUUID();
 
   }
-
 
   return (
     "p-" +
@@ -1356,22 +1415,17 @@ function desenharProgresso(elemento){
 
   elemento.innerHTML = "";
 
-
   for(let i=1;i<=5;i++){
 
     const ponto =
       document.createElement("span");
-
 
     ponto.className =
       progresso.includes(i)
       ? "ponto ativo"
       : "ponto";
 
-
-    elemento.appendChild(
-      ponto
-    );
+    elemento.appendChild(ponto);
 
   }
 
@@ -1379,27 +1433,19 @@ function desenharProgresso(elemento){
 
 
 /* =====================================================
-   CADASTRAR PARTICIPANTE
+   CADASTRO
 ===================================================== */
 
 async function cadastrarParticipante(){
 
   const campo =
-    document.getElementById(
-      "campoNome"
-    );
-
+    document.getElementById("campoNome");
 
   const erro =
-    document.getElementById(
-      "erroCadastro"
-    );
-
+    document.getElementById("erroCadastro");
 
   const botao =
-    document.getElementById(
-      "btnCadastro"
-    );
+    document.getElementById("btnCadastro");
 
 
   const nome =
@@ -1430,7 +1476,6 @@ async function cadastrarParticipante(){
 
     participanteId =
       gerarId();
-
 
     participanteNome =
       nome;
@@ -1482,7 +1527,6 @@ async function cadastrarParticipante(){
 
     progresso = [];
 
-
     abrirExperiencia();
 
   }
@@ -1499,7 +1543,6 @@ async function cadastrarParticipante(){
 
 
     botao.disabled = false;
-
 
     botao.textContent =
       "INICIAR MINHA JORNADA →";
@@ -1544,16 +1587,12 @@ async function carregarParticipante(){
         "sucotParticipanteId"
       );
 
-
       localStorage.removeItem(
         "sucotParticipanteNome"
       );
 
-
       participanteId = null;
-
       participanteNome = null;
-
 
       return false;
 
@@ -1588,10 +1627,7 @@ async function carregarParticipante(){
 
   catch(erro){
 
-    console.error(
-      erro
-    );
-
+    console.error(erro);
 
     return !!participanteNome;
 
@@ -1638,11 +1674,7 @@ function abrirExperiencia(){
     "none";
 
 
-  if(
-    !estacoes[
-      numeroEstacao
-    ]
-  ){
+  if(!estacoes[numeroEstacao]){
 
     document.getElementById(
       "inicio"
@@ -1693,24 +1725,16 @@ function abrirExperiencia(){
 function carregarEstacao(){
 
   const dados =
-    estacoes[
-      numeroEstacao
-    ];
+    estacoes[numeroEstacao];
 
 
   const numero =
-    String(
-      numeroEstacao
-    ).padStart(
-      2,
-      "0"
-    );
+    String(numeroEstacao)
+      .padStart(2,"0");
 
 
   const hero =
-    document.getElementById(
-      "hero"
-    );
+    document.getElementById("hero");
 
 
   hero.className =
@@ -1771,7 +1795,6 @@ function carregarEstacao(){
       dados,
       false
     );
-
 
     return;
 
@@ -1853,9 +1876,7 @@ function carregarEstacao(){
       );
 
 
-      area.appendChild(
-        botao
-      );
+      area.appendChild(botao);
 
     }
   );
@@ -1864,7 +1885,7 @@ function carregarEstacao(){
 
 
 /* =====================================================
-   SELECIONAR ALTERNATIVA
+   SELECIONAR
 ===================================================== */
 
 function selecionarAlternativa(
@@ -2015,9 +2036,7 @@ async function responder(){
 
 
     mostrarRevelacao(
-      estacoes[
-        numeroEstacao
-      ],
+      estacoes[numeroEstacao],
       true
     );
 
@@ -2025,9 +2044,7 @@ async function responder(){
 
   catch(erro){
 
-    console.error(
-      erro
-    );
+    console.error(erro);
 
 
     botao.disabled =
@@ -2048,7 +2065,7 @@ async function responder(){
 
 
 /* =====================================================
-   MOSTRAR REVELAÇÃO
+   REVELAÇÃO
 ===================================================== */
 
 function mostrarRevelacao(
@@ -2102,12 +2119,8 @@ function mostrarRevelacao(
     "textoConcluida"
   ).textContent =
     `ESTAÇÃO ${
-      String(
-        numeroEstacao
-      ).padStart(
-        2,
-        "0"
-      )
+      String(numeroEstacao)
+        .padStart(2,"0")
     } DESCOBERTA`;
 
 
@@ -2137,9 +2150,7 @@ function mostrarRevelacao(
     );
 
 
-  if(
-    progresso.length === 5
-  ){
+  if(progresso.length === 5){
 
     instrucao.innerHTML = `
 
@@ -2152,17 +2163,17 @@ function mostrarRevelacao(
 
       🎁 Seu presente foi liberado.
 
-      <br>
+      <br><br>
 
-      Procure o local de resgate.
+      <strong>
+        Procure o local de resgate.
+      </strong>
 
     `;
 
   }
 
-  else if(
-    !novaConclusao
-  ){
+  else if(!novaConclusao){
 
     instrucao.innerHTML = `
 
@@ -2246,9 +2257,7 @@ document.getElementById(
   "keydown",
   evento=>{
 
-    if(
-      evento.key === "Enter"
-    ){
+    if(evento.key === "Enter"){
 
       cadastrarParticipante();
 
