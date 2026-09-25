@@ -19,7 +19,11 @@
   --verde:#65704b;
 }
 
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
 body{
   min-height:100vh;
@@ -30,9 +34,13 @@ body{
     linear-gradient(180deg,#fbf6eb,#f3e5cb);
 }
 
-button,input{font:inherit}
+button,input{
+  font:inherit;
+}
 
-button{cursor:pointer}
+button{
+  cursor:pointer;
+}
 
 .app{
   max-width:520px;
@@ -44,9 +52,9 @@ button{cursor:pointer}
 }
 
 
-/* ==============================
+/* =====================================================
    CADASTRO
-================================ */
+===================================================== */
 
 .cadastro{
   min-height:100vh;
@@ -133,9 +141,9 @@ button{cursor:pointer}
 }
 
 
-/* ==============================
+/* =====================================================
    BOTÕES
-================================ */
+===================================================== */
 
 .botao{
   width:100%;
@@ -155,9 +163,9 @@ button{cursor:pointer}
 }
 
 
-/* ==============================
+/* =====================================================
    TOPO
-================================ */
+===================================================== */
 
 .topo{
   padding:31px 25px 17px;
@@ -193,9 +201,9 @@ button{cursor:pointer}
 }
 
 
-/* ==============================
+/* =====================================================
    PROGRESSO
-================================ */
+===================================================== */
 
 .progresso{
   display:flex;
@@ -216,21 +224,30 @@ button{cursor:pointer}
 }
 
 
-/* ==============================
-   HERO
-================================ */
+/* =====================================================
+   HERO — BASE
+===================================================== */
 
 .hero{
-  height:255px;
+  height:265px;
   position:relative;
   overflow:hidden;
+  transition:.4s ease;
+}
+
+
+/* =====================================================
+   HERO — ESTAÇÃO 1 / CABANA
+===================================================== */
+
+.hero.estacao1{
   background:
     linear-gradient(to bottom,transparent 45%,#f7eddc 100%),
     radial-gradient(circle at 70% 48%,rgba(210,158,70,.48),transparent 18%),
     linear-gradient(145deg,#dfc28f,#9d7950);
 }
 
-.hero::before{
+.hero.estacao1::before{
   content:"";
   position:absolute;
   width:230px;
@@ -239,11 +256,15 @@ button{cursor:pointer}
   bottom:38px;
   border:3px solid rgba(255,248,225,.75);
   border-top:14px solid rgba(76,83,48,.78);
-  background:linear-gradient(90deg,rgba(255,250,230,.45),rgba(192,140,55,.34));
+  background:linear-gradient(
+    90deg,
+    rgba(255,250,230,.45),
+    rgba(192,140,55,.34)
+  );
   box-shadow:0 0 55px rgba(255,192,81,.50);
 }
 
-.hero::after{
+.hero.estacao1::after{
   content:"✦";
   position:absolute;
   right:120px;
@@ -254,9 +275,90 @@ button{cursor:pointer}
 }
 
 
-/* ==============================
-   ESTAÇÃO
-================================ */
+/* =====================================================
+   HERO — ESTAÇÃO 2 / PROVISÃO
+===================================================== */
+
+.hero.estacao2{
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,242,207,.08) 0%,
+      rgba(247,226,182,.08) 45%,
+      #f7eddc 100%
+    ),
+    radial-gradient(
+      circle at 68% 35%,
+      rgba(255,229,151,.95) 0%,
+      rgba(236,182,87,.55) 14%,
+      transparent 36%
+    ),
+    linear-gradient(
+      180deg,
+      #d9b277 0%,
+      #c18d4c 47%,
+      #a9743c 100%
+    );
+}
+
+.hero.estacao2::before{
+  content:"";
+  position:absolute;
+  left:-8%;
+  right:-8%;
+  bottom:30px;
+  height:120px;
+
+  background:
+    radial-gradient(
+      ellipse at 20% 100%,
+      #d8b77b 0%,
+      #b98b50 58%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse at 75% 100%,
+      #e2c58c 0%,
+      #b78246 62%,
+      transparent 64%
+    );
+
+  opacity:.95;
+}
+
+.hero.estacao2::after{
+  content:"•  ·  •  ·  •  ·  •  ·  •  ·  •";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:42px;
+  text-align:center;
+  color:rgba(255,244,208,.92);
+  font-size:25px;
+  letter-spacing:9px;
+  text-shadow:
+    0 3px 9px rgba(84,48,16,.30),
+    0 0 8px rgba(255,236,180,.45);
+}
+
+
+/* =====================================================
+   HERO — ESTAÇÕES FUTURAS
+===================================================== */
+
+.hero.estacao3,
+.hero.estacao4,
+.hero.estacao5{
+  background:
+    linear-gradient(to bottom,transparent 45%,#f7eddc 100%),
+    radial-gradient(circle at 70% 48%,rgba(210,158,70,.48),transparent 18%),
+    linear-gradient(145deg,#dfc28f,#9d7950);
+}
+
+
+/* =====================================================
+   CONTEÚDO
+===================================================== */
 
 .conteudo{
   padding:5px 26px 45px;
@@ -323,11 +425,17 @@ button{cursor:pointer}
   text-align:left;
   color:var(--marrom);
   box-shadow:0 8px 22px rgba(86,58,22,.05);
+  transition:.18s ease;
+}
+
+.alternativa:active{
+  transform:scale(.985);
 }
 
 .alternativa.selecionada{
   border-color:var(--dourado);
   background:#fff8e9;
+  box-shadow:0 8px 25px rgba(183,135,56,.14);
 }
 
 .letra{
@@ -350,9 +458,9 @@ button{cursor:pointer}
 }
 
 
-/* ==============================
+/* =====================================================
    REVELAÇÃO
-================================ */
+===================================================== */
 
 .revelacao{
   display:none;
@@ -360,8 +468,14 @@ button{cursor:pointer}
 }
 
 @keyframes subir{
-  from{opacity:0;transform:translateY(15px)}
-  to{opacity:1;transform:translateY(0)}
+  from{
+    opacity:0;
+    transform:translateY(15px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
 
 .sinal{
@@ -459,9 +573,9 @@ button{cursor:pointer}
 }
 
 
-/* ==============================
+/* =====================================================
    SEM QR
-================================ */
+===================================================== */
 
 .inicio{
   min-height:100vh;
@@ -493,11 +607,16 @@ button{cursor:pointer}
 }
 
 @media(min-width:700px){
-  body{padding:25px 0}
+
+  body{
+    padding:25px 0;
+  }
+
   .app{
     border-radius:34px;
     min-height:calc(100vh - 50px);
   }
+
 }
 </style>
 </head>
@@ -506,15 +625,26 @@ button{cursor:pointer}
 
 <main class="app">
 
-<!-- CADASTRO -->
+
+<!-- =====================================================
+     CADASTRO
+===================================================== -->
+
 <section id="cadastro" class="cadastro">
+
   <div class="cadastro-box">
 
-    <div class="cadastro-simbolo">✦</div>
+    <div class="cadastro-simbolo">
+      ✦
+    </div>
 
-    <div class="mini">Ministério Apostólico Koinonia</div>
+    <div class="mini">
+      Ministério Apostólico Koinonia
+    </div>
 
-    <h1>Jornada<br>de Sucot</h1>
+    <h1>
+      Jornada<br>de Sucot
+    </h1>
 
     <div class="cadastro-sub">
       5 sinais • uma mesma presença
@@ -526,7 +656,10 @@ button{cursor:pointer}
     </p>
 
     <div class="campo">
-      <label>COMO DEVEMOS CHAMAR VOCÊ?</label>
+
+      <label>
+        COMO DEVEMOS CHAMAR VOCÊ?
+      </label>
 
       <input
         id="campoNome"
@@ -534,9 +667,13 @@ button{cursor:pointer}
         maxlength="60"
         autocomplete="name"
         placeholder="Digite seu nome">
+
     </div>
 
-    <div id="erroCadastro" class="erro"></div>
+    <div
+      id="erroCadastro"
+      class="erro">
+    </div>
 
     <button
       id="btnCadastro"
@@ -545,81 +682,163 @@ button{cursor:pointer}
     </button>
 
   </div>
+
 </section>
 
 
-<!-- SEM ESTAÇÃO -->
-<section id="inicio" class="inicio">
-  <div>
-    <div class="mini">Jornada de</div>
+<!-- =====================================================
+     ENTRADA SEM ESTAÇÃO
+===================================================== -->
 
-    <h1>Sucot</h1>
+<section
+  id="inicio"
+  class="inicio">
+
+  <div>
+
+    <div class="mini">
+      Jornada de
+    </div>
+
+    <h1>
+      Sucot
+    </h1>
 
     <p id="textoInicio">
       Cinco sinais estão espalhados pela festa.
     </p>
 
     <div class="caixa">
-      <strong>ENCONTRE UM DOS 5 SINAIS</strong>
+
+      <strong>
+        ENCONTRE UM DOS 5 SINAIS
+      </strong>
+
       <br><br>
-      Escaneie um QR Code espalhado pelo evento para descobrir uma estação.
+
+      Escaneie um QR Code espalhado pelo evento
+      para descobrir uma estação.
+
     </div>
+
   </div>
+
 </section>
 
 
-<!-- ESTAÇÃO -->
-<section id="telaEstacao" style="display:none">
+<!-- =====================================================
+     ESTAÇÃO
+===================================================== -->
+
+<section
+  id="telaEstacao"
+  style="display:none">
+
 
 <header class="topo">
 
   <div>
-    <div class="mini">Jornada de</div>
-    <div class="logo">SUCOT</div>
-    <div class="sublogo">5 sinais • uma mesma presença</div>
+
+    <div class="mini">
+      Jornada de
+    </div>
+
+    <div class="logo">
+      SUCOT
+    </div>
+
+    <div class="sublogo">
+      5 sinais • uma mesma presença
+    </div>
+
   </div>
 
+
   <div class="numero-estacao">
-    <span class="mini">Estação</span>
-    <strong id="numeroTopo"></strong>
-    <div class="progresso" id="progressoTopo"></div>
+
+    <span class="mini">
+      Estação
+    </span>
+
+    <strong id="numeroTopo">
+    </strong>
+
+    <div
+      class="progresso"
+      id="progressoTopo">
+    </div>
+
   </div>
 
 </header>
 
-<div class="hero"></div>
+
+<div
+  class="hero"
+  id="hero">
+</div>
+
 
 <section class="conteudo">
 
-<div class="saudacao" id="saudacao"></div>
+<div
+  class="saudacao"
+  id="saudacao">
+</div>
 
-<!-- PERGUNTA -->
+
+<!-- =====================================================
+     PERGUNTA
+===================================================== -->
+
 <div id="blocoPergunta">
 
-  <div class="icone" id="icone"></div>
+  <div
+    class="icone"
+    id="icone">
+  </div>
 
-  <h1 class="titulo" id="titulo"></h1>
+  <h1
+    class="titulo"
+    id="titulo">
+  </h1>
 
-  <div class="profetico" id="profetico"></div>
+  <div
+    class="profetico"
+    id="profetico">
+  </div>
 
   <div class="linha"></div>
 
-  <h2 class="pergunta" id="pergunta"></h2>
+  <h2
+    class="pergunta"
+    id="pergunta">
+  </h2>
 
-  <div class="alternativas" id="alternativas"></div>
+  <div
+    class="alternativas"
+    id="alternativas">
+  </div>
 
   <button
     id="btnResponder"
     class="botao"
     disabled>
+
     RESPONDER →
+
   </button>
 
 </div>
 
 
-<!-- REVELAÇÃO -->
-<div id="blocoRevelacao" class="revelacao">
+<!-- =====================================================
+     REVELAÇÃO
+===================================================== -->
+
+<div
+  id="blocoRevelacao"
+  class="revelacao">
 
   <div class="sinal">
     VOCÊ DESCOBRIU UM SINAL
@@ -636,20 +855,36 @@ button{cursor:pointer}
   </p>
 
   <div class="versiculo">
-    <span id="versiculo"></span>
-    <span id="referencia" class="referencia"></span>
+
+    <span id="versiculo">
+    </span>
+
+    <span
+      id="referencia"
+      class="referencia">
+    </span>
+
   </div>
 
   <div class="aplicacao">
-    <small>O SINAL PARA NÓS</small>
-    <p id="aplicacao"></p>
+
+    <small>
+      O SINAL PARA NÓS
+    </small>
+
+    <p id="aplicacao">
+    </p>
+
   </div>
 
   <div class="concluida">
 
-    <div class="check">✓</div>
+    <div class="check">
+      ✓
+    </div>
 
-    <strong id="textoConcluida"></strong>
+    <strong id="textoConcluida">
+    </strong>
 
     <div
       id="progressoFinal"
@@ -657,12 +892,14 @@ button{cursor:pointer}
       style="justify-content:center;margin-top:18px">
     </div>
 
-    <div id="contador" class="contador"></div>
+    <div
+      id="contador"
+      class="contador">
+    </div>
 
-    <p class="instrucao" id="instrucaoFinal">
-      Continue explorando a festa.
-      <br>
-      <strong>Encontre outro QR Code.</strong>
+    <p
+      class="instrucao"
+      id="instrucaoFinal">
     </p>
 
   </div>
@@ -670,6 +907,7 @@ button{cursor:pointer}
 </div>
 
 </section>
+
 </section>
 
 </main>
@@ -681,8 +919,11 @@ button{cursor:pointer}
    FIREBASE
 ===================================================== */
 
-import { initializeApp }
+import {
+  initializeApp
+}
 from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
 
 import {
   getFirestore,
@@ -696,41 +937,71 @@ from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDRWRq6PsAmEkVjGMPdCz-UGwuIdnCJG9g",
-  authDomain: "jornada-sucot.firebaseapp.com",
-  projectId: "jornada-sucot",
-  storageBucket: "jornada-sucot.firebasestorage.app",
-  messagingSenderId: "9822470892",
-  appId: "1:9822470892:web:5ec54e14a5dfd928e89bc9"
+
+  apiKey:
+  "AIzaSyDRWRq6PsAmEkVjGMPdCz-UGwuIdnCJG9g",
+
+  authDomain:
+  "jornada-sucot.firebaseapp.com",
+
+  projectId:
+  "jornada-sucot",
+
+  storageBucket:
+  "jornada-sucot.firebasestorage.app",
+
+  messagingSenderId:
+  "9822470892",
+
+  appId:
+  "1:9822470892:web:5ec54e14a5dfd928e89bc9"
+
 };
 
 
 const firebaseApp =
   initializeApp(firebaseConfig);
 
+
 const db =
   getFirestore(firebaseApp);
 
 
 /* =====================================================
-   ESTAÇÕES
+   CONTEÚDO DAS ESTAÇÕES
 ===================================================== */
 
 const estacoes = {
 
+
+/* -----------------------------------------------------
+   ESTAÇÃO 01 — A CABANA
+----------------------------------------------------- */
+
 1:{
-  nome:"A CABANA",
-  icone:"🛖",
-  profetico:"Deus habita conosco",
+
+  nome:
+  "A CABANA",
+
+  icone:
+  "🛖",
+
+  profetico:
+  "Deus habita conosco",
 
   pergunta:
   "Por que Deus mandou Israel habitar em cabanas durante a Festa de Sucot?",
 
   alternativas:[
+
     "Porque não tinham casas.",
+
     "Para lembrar que habitaram em cabanas quando Deus os tirou do Egito.",
+
     "Porque precisavam se proteger do calor.",
+
     "Porque era o costume dos povos do deserto."
+
   ],
 
   correta:1,
@@ -749,82 +1020,215 @@ const estacoes = {
 
   aplicacao:
   "Nossa segurança não está apenas naquilo que construímos ao nosso redor. Está no Deus que habita conosco."
+
 },
+
+
+/* -----------------------------------------------------
+   ESTAÇÃO 02 — A PROVISÃO
+----------------------------------------------------- */
 
 2:{
-  nome:"SEGUNDO SINAL",
-  icone:"✦",
-  profetico:"A jornada continua",
-  pergunta:"Esta estação será revelada em breve.",
-  alternativas:["Descobrir este sinal"],
-  correta:0,
-  frase:"VOCÊ ENCONTROU O SEGUNDO SINAL.",
-  explicacao:"Esta experiência será construída aqui.",
-  versiculo:"",
-  referencia:"",
-  aplicacao:"Continue a jornada."
+
+  nome:
+  "A PROVISÃO",
+
+  icone:
+  "🌾",
+
+  profetico:
+  "O Deus que sustenta",
+
+  pergunta:
+  "Durante os anos no deserto, como Deus sustentou diariamente o povo de Israel?",
+
+  alternativas:[
+
+    "Eles armazenaram alimento suficiente antes de sair do Egito.",
+
+    "Outros povos forneciam alimento durante a caminhada.",
+
+    "Deus enviava o maná e supria aquilo de que precisavam.",
+
+    "Cada família precisava encontrar seu próprio alimento."
+
+  ],
+
+  correta:2,
+
+  frase:
+  "O DESERTO NÃO CANCELOU A PROVISÃO.",
+
+  explicacao:
+  "Israel estava em um lugar onde seus próprios recursos não seriam suficientes. Ainda assim, dia após dia, Deus sustentou o povo. O maná se tornou uma lembrança de que a provisão não dependia apenas do ambiente — dependia do Provedor.",
+
+  versiculo:
+  "“Eis que vos farei chover pão dos céus.”",
+
+  referencia:
+  "ÊXODO 16:4",
+
+  aplicacao:
+  "Existem lugares em que Deus permite que nossos recursos terminem para aprendermos a reconhecer de onde realmente vem o nosso sustento."
+
 },
+
+
+/* -----------------------------------------------------
+   ESTAÇÃO 03 — EM CONSTRUÇÃO
+----------------------------------------------------- */
 
 3:{
-  nome:"TERCEIRO SINAL",
-  icone:"✦",
-  profetico:"A jornada continua",
-  pergunta:"Esta estação será revelada em breve.",
-  alternativas:["Descobrir este sinal"],
+
+  nome:
+  "TERCEIRO SINAL",
+
+  icone:
+  "✦",
+
+  profetico:
+  "A jornada continua",
+
+  pergunta:
+  "Esta estação será revelada em breve.",
+
+  alternativas:[
+    "Descobrir este sinal"
+  ],
+
   correta:0,
-  frase:"VOCÊ ENCONTROU O TERCEIRO SINAL.",
-  explicacao:"Esta experiência será construída aqui.",
-  versiculo:"",
-  referencia:"",
-  aplicacao:"Continue a jornada."
+
+  frase:
+  "VOCÊ ENCONTROU O TERCEIRO SINAL.",
+
+  explicacao:
+  "Esta experiência será construída aqui.",
+
+  versiculo:
+  "",
+
+  referencia:
+  "",
+
+  aplicacao:
+  "Continue a jornada."
+
 },
+
+
+/* -----------------------------------------------------
+   ESTAÇÃO 04 — EM CONSTRUÇÃO
+----------------------------------------------------- */
 
 4:{
-  nome:"QUARTO SINAL",
-  icone:"✦",
-  profetico:"A jornada continua",
-  pergunta:"Esta estação será revelada em breve.",
-  alternativas:["Descobrir este sinal"],
+
+  nome:
+  "QUARTO SINAL",
+
+  icone:
+  "✦",
+
+  profetico:
+  "A jornada continua",
+
+  pergunta:
+  "Esta estação será revelada em breve.",
+
+  alternativas:[
+    "Descobrir este sinal"
+  ],
+
   correta:0,
-  frase:"VOCÊ ENCONTROU O QUARTO SINAL.",
-  explicacao:"Esta experiência será construída aqui.",
-  versiculo:"",
-  referencia:"",
-  aplicacao:"Continue a jornada."
+
+  frase:
+  "VOCÊ ENCONTROU O QUARTO SINAL.",
+
+  explicacao:
+  "Esta experiência será construída aqui.",
+
+  versiculo:
+  "",
+
+  referencia:
+  "",
+
+  aplicacao:
+  "Continue a jornada."
+
 },
 
+
+/* -----------------------------------------------------
+   ESTAÇÃO 05 — EM CONSTRUÇÃO
+----------------------------------------------------- */
+
 5:{
-  nome:"QUINTO SINAL",
-  icone:"✦",
-  profetico:"A jornada se completa",
-  pergunta:"Esta estação será revelada em breve.",
-  alternativas:["Descobrir este sinal"],
+
+  nome:
+  "QUINTO SINAL",
+
+  icone:
+  "✦",
+
+  profetico:
+  "A jornada se completa",
+
+  pergunta:
+  "Esta estação será revelada em breve.",
+
+  alternativas:[
+    "Descobrir este sinal"
+  ],
+
   correta:0,
-  frase:"VOCÊ ENCONTROU O QUINTO SINAL.",
-  explicacao:"Esta experiência será construída aqui.",
-  versiculo:"",
-  referencia:"",
-  aplicacao:"Continue a jornada."
+
+  frase:
+  "VOCÊ ENCONTROU O QUINTO SINAL.",
+
+  explicacao:
+  "Esta experiência será construída aqui.",
+
+  versiculo:
+  "",
+
+  referencia:
+  "",
+
+  aplicacao:
+  "Continue a jornada."
+
 }
 
 };
 
 
 /* =====================================================
-   ESTADO
+   ESTADO DO PARTICIPANTE
 ===================================================== */
 
 const params =
-  new URLSearchParams(window.location.search);
+  new URLSearchParams(
+    window.location.search
+  );
+
 
 const numeroEstacao =
-  Number(params.get("estacao"));
+  Number(
+    params.get("estacao")
+  );
+
 
 let participanteId =
-  localStorage.getItem("sucotParticipanteId");
+  localStorage.getItem(
+    "sucotParticipanteId"
+  );
+
 
 let participanteNome =
-  localStorage.getItem("sucotParticipanteNome");
+  localStorage.getItem(
+    "sucotParticipanteNome"
+  );
+
 
 let progresso = [];
 
@@ -832,22 +1236,36 @@ let alternativaSelecionada = null;
 
 
 /* =====================================================
-   UTILIDADES
+   GERAR ID
 ===================================================== */
 
 function gerarId(){
 
-  if(window.crypto && crypto.randomUUID){
+  if(
+    window.crypto &&
+    crypto.randomUUID
+  ){
+
     return crypto.randomUUID();
+
   }
 
-  return "p-" +
+
+  return (
+    "p-" +
     Date.now() +
     "-" +
-    Math.random().toString(36).slice(2);
+    Math.random()
+      .toString(36)
+      .slice(2)
+  );
 
 }
 
+
+/* =====================================================
+   PRIMEIRO NOME
+===================================================== */
 
 function primeiroNome(nome){
 
@@ -858,44 +1276,65 @@ function primeiroNome(nome){
 }
 
 
+/* =====================================================
+   PROGRESSO
+===================================================== */
+
 function desenharProgresso(elemento){
 
   elemento.innerHTML = "";
+
 
   for(let i=1;i<=5;i++){
 
     const ponto =
       document.createElement("span");
 
+
     ponto.className =
       progresso.includes(i)
       ? "ponto ativo"
       : "ponto";
 
-    elemento.appendChild(ponto);
+
+    elemento.appendChild(
+      ponto
+    );
+
   }
 
 }
 
 
 /* =====================================================
-   CADASTRO
+   CADASTRAR PARTICIPANTE
 ===================================================== */
 
 async function cadastrarParticipante(){
 
   const campo =
-    document.getElementById("campoNome");
+    document.getElementById(
+      "campoNome"
+    );
+
 
   const erro =
-    document.getElementById("erroCadastro");
+    document.getElementById(
+      "erroCadastro"
+    );
+
 
   const botao =
-    document.getElementById("btnCadastro");
+    document.getElementById(
+      "btnCadastro"
+    );
+
 
   const nome =
-    campo.value.trim()
+    campo.value
+      .trim()
       .replace(/\s+/g," ");
+
 
   if(nome.length < 2){
 
@@ -903,37 +1342,65 @@ async function cadastrarParticipante(){
       "Digite seu nome para iniciar.";
 
     return;
+
   }
+
 
   erro.textContent = "";
 
   botao.disabled = true;
-  botao.textContent = "INICIANDO...";
+
+  botao.textContent =
+    "INICIANDO...";
 
 
   try{
 
-    participanteId = gerarId();
-    participanteNome = nome;
+    participanteId =
+      gerarId();
+
+
+    participanteNome =
+      nome;
+
 
     const referencia =
-      doc(db,"participantes",participanteId);
+      doc(
+        db,
+        "participantes",
+        participanteId
+      );
 
-    await setDoc(referencia,{
-      nome:nome,
-      estacoes:[],
-      totalConcluido:0,
-      jornadaCompleta:false,
-      premioEntregue:false,
-      criadoEm:serverTimestamp(),
-      atualizadoEm:serverTimestamp()
-    });
+
+    await setDoc(
+      referencia,
+      {
+
+        nome:nome,
+
+        estacoes:[],
+
+        totalConcluido:0,
+
+        jornadaCompleta:false,
+
+        premioEntregue:false,
+
+        criadoEm:
+          serverTimestamp(),
+
+        atualizadoEm:
+          serverTimestamp()
+
+      }
+    );
 
 
     localStorage.setItem(
       "sucotParticipanteId",
       participanteId
     );
+
 
     localStorage.setItem(
       "sucotParticipanteNome",
@@ -943,17 +1410,25 @@ async function cadastrarParticipante(){
 
     progresso = [];
 
+
     abrirExperiencia();
 
   }
+
   catch(erroFirebase){
 
-    console.error(erroFirebase);
+    console.error(
+      erroFirebase
+    );
+
 
     erro.textContent =
       "Não conseguimos iniciar agora. Tente novamente.";
 
+
     botao.disabled = false;
+
+
     botao.textContent =
       "INICIAR MINHA JORNADA →";
 
@@ -963,22 +1438,32 @@ async function cadastrarParticipante(){
 
 
 /* =====================================================
-   BUSCAR PARTICIPANTE
+   CARREGAR PARTICIPANTE
 ===================================================== */
 
 async function carregarParticipante(){
 
   if(!participanteId){
+
     return false;
+
   }
+
 
   try{
 
     const referencia =
-      doc(db,"participantes",participanteId);
+      doc(
+        db,
+        "participantes",
+        participanteId
+      );
+
 
     const snapshot =
-      await getDoc(referencia);
+      await getDoc(
+        referencia
+      );
 
 
     if(!snapshot.exists()){
@@ -987,25 +1472,34 @@ async function carregarParticipante(){
         "sucotParticipanteId"
       );
 
+
       localStorage.removeItem(
         "sucotParticipanteNome"
       );
 
+
       participanteId = null;
+
       participanteNome = null;
 
+
       return false;
+
     }
 
 
     const dados =
       snapshot.data();
 
+
     participanteNome =
       dados.nome;
 
+
     progresso =
-      Array.isArray(dados.estacoes)
+      Array.isArray(
+        dados.estacoes
+      )
       ? dados.estacoes
       : [];
 
@@ -1019,14 +1513,13 @@ async function carregarParticipante(){
     return true;
 
   }
+
   catch(erro){
 
-    console.error(erro);
+    console.error(
+      erro
+    );
 
-    /*
-      Se houver uma falha momentânea de conexão,
-      mantemos a identidade local.
-    */
 
     return !!participanteNome;
 
@@ -1041,14 +1534,22 @@ async function carregarParticipante(){
 
 function mostrarCadastro(){
 
-  document.getElementById("cadastro")
-    .style.display = "flex";
+  document.getElementById(
+    "cadastro"
+  ).style.display =
+    "flex";
 
-  document.getElementById("inicio")
-    .style.display = "none";
 
-  document.getElementById("telaEstacao")
-    .style.display = "none";
+  document.getElementById(
+    "inicio"
+  ).style.display =
+    "none";
+
+
+  document.getElementById(
+    "telaEstacao"
+  ).style.display =
+    "none";
 
 }
 
@@ -1059,32 +1560,53 @@ function mostrarCadastro(){
 
 function abrirExperiencia(){
 
-  document.getElementById("cadastro")
-    .style.display = "none";
+  document.getElementById(
+    "cadastro"
+  ).style.display =
+    "none";
 
 
-  if(!estacoes[numeroEstacao]){
+  if(
+    !estacoes[
+      numeroEstacao
+    ]
+  ){
 
-    document.getElementById("inicio")
-      .style.display = "flex";
+    document.getElementById(
+      "inicio"
+    ).style.display =
+      "flex";
 
-    document.getElementById("telaEstacao")
-      .style.display = "none";
 
-    document.getElementById("textoInicio")
-      .innerHTML =
-      `<strong>${primeiroNome(participanteNome)}</strong>, sua jornada começou.<br>
+    document.getElementById(
+      "telaEstacao"
+    ).style.display =
+      "none";
+
+
+    document.getElementById(
+      "textoInicio"
+    ).innerHTML =
+      `<strong>${primeiroNome(participanteNome)}</strong>,
+       sua jornada começou.<br>
        Encontre os sinais espalhados pela festa.`;
 
+
     return;
+
   }
 
 
-  document.getElementById("inicio")
-    .style.display = "none";
+  document.getElementById(
+    "inicio"
+  ).style.display =
+    "none";
 
-  document.getElementById("telaEstacao")
-    .style.display = "block";
+
+  document.getElementById(
+    "telaEstacao"
+  ).style.display =
+    "block";
 
 
   carregarEstacao();
@@ -1099,70 +1621,132 @@ function abrirExperiencia(){
 function carregarEstacao(){
 
   const dados =
-    estacoes[numeroEstacao];
+    estacoes[
+      numeroEstacao
+    ];
+
 
   const numero =
-    String(numeroEstacao)
-      .padStart(2,"0");
+    String(
+      numeroEstacao
+    ).padStart(
+      2,
+      "0"
+    );
 
 
-  document.getElementById("numeroTopo")
-    .textContent =
+  /* HERO ESPECÍFICO */
+
+  const hero =
+    document.getElementById(
+      "hero"
+    );
+
+
+  hero.className =
+    `hero estacao${numeroEstacao}`;
+
+
+  /* CABEÇALHO */
+
+  document.getElementById(
+    "numeroTopo"
+  ).textContent =
     `${numero} DE 05`;
 
 
-  document.getElementById("saudacao")
-    .innerHTML =
-    `<strong>${primeiroNome(participanteNome)}</strong>, você encontrou um sinal.`;
+  document.getElementById(
+    "saudacao"
+  ).innerHTML =
+    `<strong>${primeiroNome(participanteNome)}</strong>,
+     você encontrou um sinal.`;
 
 
-  document.getElementById("icone")
-    .textContent =
+  document.getElementById(
+    "icone"
+  ).textContent =
     dados.icone;
 
 
-  document.getElementById("titulo")
-    .textContent =
+  document.getElementById(
+    "titulo"
+  ).textContent =
     `${numero} · ${dados.nome}`;
 
 
-  document.getElementById("profetico")
-    .textContent =
+  document.getElementById(
+    "profetico"
+  ).textContent =
     dados.profetico;
 
 
-  document.getElementById("pergunta")
-    .textContent =
+  document.getElementById(
+    "pergunta"
+  ).textContent =
     dados.pergunta;
 
 
   desenharProgresso(
-    document.getElementById("progressoTopo")
+    document.getElementById(
+      "progressoTopo"
+    )
   );
 
 
-  /*
-    SE ESTAÇÃO JÁ FOI RESPONDIDA
-  */
+  /* ESTAÇÃO JÁ CONCLUÍDA */
 
-  if(progresso.includes(numeroEstacao)){
+  if(
+    progresso.includes(
+      numeroEstacao
+    )
+  ){
 
-    mostrarRevelacao(dados,false);
+    mostrarRevelacao(
+      dados,
+      false
+    );
+
 
     return;
 
   }
 
 
-  document.getElementById("blocoPergunta")
-    .style.display = "block";
+  document.getElementById(
+    "blocoPergunta"
+  ).style.display =
+    "block";
 
-  document.getElementById("blocoRevelacao")
-    .style.display = "none";
+
+  document.getElementById(
+    "blocoRevelacao"
+  ).style.display =
+    "none";
+
+
+  alternativaSelecionada =
+    null;
+
+
+  const botaoResponder =
+    document.getElementById(
+      "btnResponder"
+    );
+
+
+  botaoResponder.disabled =
+    true;
+
+
+  botaoResponder.textContent =
+    "RESPONDER →";
 
 
   const area =
-    document.getElementById("alternativas");
+    document.getElementById(
+      "alternativas"
+    );
+
 
   area.innerHTML = "";
 
@@ -1170,13 +1754,19 @@ function carregarEstacao(){
   dados.alternativas.forEach(
     (texto,indice)=>{
 
+
       const botao =
-        document.createElement("button");
+        document.createElement(
+          "button"
+        );
+
 
       botao.className =
         "alternativa";
 
+
       botao.innerHTML = `
+
         <span class="letra">
           ${String.fromCharCode(65+indice)}
         </span>
@@ -1184,6 +1774,7 @@ function carregarEstacao(){
         <span class="texto-alternativa">
           ${texto}
         </span>
+
       `;
 
 
@@ -1196,7 +1787,9 @@ function carregarEstacao(){
       );
 
 
-      area.appendChild(botao);
+      area.appendChild(
+        botao
+      );
 
     }
   );
@@ -1205,24 +1798,39 @@ function carregarEstacao(){
 
 
 /* =====================================================
-   ESCOLHER RESPOSTA
+   SELECIONAR ALTERNATIVA
 ===================================================== */
 
-function selecionarAlternativa(indice,botao){
+function selecionarAlternativa(
+  indice,
+  botao
+){
 
   alternativaSelecionada =
     indice;
 
+
   document
-    .querySelectorAll(".alternativa")
-    .forEach(item=>
-      item.classList.remove("selecionada")
+    .querySelectorAll(
+      ".alternativa"
+    )
+    .forEach(
+      item=>
+        item.classList.remove(
+          "selecionada"
+        )
     );
 
-  botao.classList.add("selecionada");
 
-  document.getElementById("btnResponder")
-    .disabled = false;
+  botao.classList.add(
+    "selecionada"
+  );
+
+
+  document.getElementById(
+    "btnResponder"
+  ).disabled =
+    false;
 
 }
 
@@ -1233,31 +1841,48 @@ function selecionarAlternativa(indice,botao){
 
 async function responder(){
 
-  if(alternativaSelecionada === null){
+  if(
+    alternativaSelecionada === null
+  ){
+
     return;
+
   }
 
 
   const botao =
-    document.getElementById("btnResponder");
+    document.getElementById(
+      "btnResponder"
+    );
 
-  botao.disabled = true;
+
+  botao.disabled =
+    true;
+
+
   botao.textContent =
     "REGISTRANDO...";
 
 
   try{
 
-    /*
-      Só agora a estação é contabilizada.
-    */
 
-    if(!progresso.includes(numeroEstacao)){
-      progresso.push(numeroEstacao);
+    if(
+      !progresso.includes(
+        numeroEstacao
+      )
+    ){
+
+      progresso.push(
+        numeroEstacao
+      );
+
     }
 
 
-    progresso.sort((a,b)=>a-b);
+    progresso.sort(
+      (a,b)=>a-b
+    );
 
 
     const completa =
@@ -1265,34 +1890,55 @@ async function responder(){
 
 
     const referencia =
-      doc(db,"participantes",participanteId);
+      doc(
+        db,
+        "participantes",
+        participanteId
+      );
 
 
     const dadosAtualizacao = {
-      estacoes:progresso,
-      totalConcluido:progresso.length,
-      jornadaCompleta:completa,
-      atualizadoEm:serverTimestamp()
+
+      estacoes:
+        progresso,
+
+      totalConcluido:
+        progresso.length,
+
+      jornadaCompleta:
+        completa,
+
+      atualizadoEm:
+        serverTimestamp()
+
     };
 
-
-    /*
-      Guarda também a resposta e horário
-      específico daquela estação.
-    */
 
     dadosAtualizacao[
       `estacao${numeroEstacao}`
     ] = {
-      concluida:true,
-      resposta:alternativaSelecionada,
-      concluidaEm:new Date().toISOString()
+
+      concluida:
+        true,
+
+      resposta:
+        alternativaSelecionada,
+
+      acertou:
+        alternativaSelecionada ===
+        estacoes[numeroEstacao].correta,
+
+      concluidaEm:
+        new Date().toISOString()
+
     };
 
 
     if(completa){
+
       dadosAtualizacao.completouEm =
         serverTimestamp();
+
     }
 
 
@@ -1303,18 +1949,28 @@ async function responder(){
 
 
     mostrarRevelacao(
-      estacoes[numeroEstacao],
+      estacoes[
+        numeroEstacao
+      ],
       true
     );
 
   }
+
   catch(erro){
 
-    console.error(erro);
+    console.error(
+      erro
+    );
 
-    botao.disabled = false;
+
+    botao.disabled =
+      false;
+
+
     botao.textContent =
       "TENTAR NOVAMENTE →";
+
 
     alert(
       "Não conseguimos registrar esta estação. Verifique a internet e tente novamente."
@@ -1326,92 +1982,148 @@ async function responder(){
 
 
 /* =====================================================
-   REVELAÇÃO
+   MOSTRAR REVELAÇÃO
 ===================================================== */
 
-function mostrarRevelacao(dados,novaConclusao){
+function mostrarRevelacao(
+  dados,
+  novaConclusao
+){
 
-  document.getElementById("blocoPergunta")
-    .style.display = "none";
+  document.getElementById(
+    "blocoPergunta"
+  ).style.display =
+    "none";
 
-  document.getElementById("blocoRevelacao")
-    .style.display = "block";
+
+  document.getElementById(
+    "blocoRevelacao"
+  ).style.display =
+    "block";
 
 
-  document.getElementById("fraseRevelacao")
-    .textContent =
+  document.getElementById(
+    "fraseRevelacao"
+  ).textContent =
     dados.frase;
 
 
-  document.getElementById("explicacao")
-    .textContent =
+  document.getElementById(
+    "explicacao"
+  ).textContent =
     dados.explicacao;
 
 
-  document.getElementById("versiculo")
-    .textContent =
+  document.getElementById(
+    "versiculo"
+  ).textContent =
     dados.versiculo;
 
 
-  document.getElementById("referencia")
-    .textContent =
+  document.getElementById(
+    "referencia"
+  ).textContent =
     dados.referencia;
 
 
-  document.getElementById("aplicacao")
-    .textContent =
+  document.getElementById(
+    "aplicacao"
+  ).textContent =
     dados.aplicacao;
 
 
-  document.getElementById("textoConcluida")
-    .textContent =
-    `ESTAÇÃO ${String(numeroEstacao).padStart(2,"0")} DESCOBERTA`;
+  document.getElementById(
+    "textoConcluida"
+  ).textContent =
+    `ESTAÇÃO ${
+      String(
+        numeroEstacao
+      ).padStart(
+        2,
+        "0"
+      )
+    } DESCOBERTA`;
 
 
   desenharProgresso(
-    document.getElementById("progressoTopo")
+    document.getElementById(
+      "progressoTopo"
+    )
   );
+
 
   desenharProgresso(
-    document.getElementById("progressoFinal")
+    document.getElementById(
+      "progressoFinal"
+    )
   );
 
 
-  document.getElementById("contador")
-    .textContent =
+  document.getElementById(
+    "contador"
+  ).textContent =
     `${progresso.length} de 5 sinais encontrados`;
 
 
   const instrucao =
-    document.getElementById("instrucaoFinal");
+    document.getElementById(
+      "instrucaoFinal"
+    );
 
 
-  if(progresso.length === 5){
+  if(
+    progresso.length === 5
+  ){
 
     instrucao.innerHTML = `
-      <strong>${primeiroNome(participanteNome)}, sua jornada está completa.</strong>
+
+      <strong>
+        ${primeiroNome(participanteNome)},
+        sua jornada está completa.
+      </strong>
+
       <br><br>
+
       🎁 Seu presente foi liberado.
+
       <br>
+
       Procure o local de resgate.
+
     `;
 
   }
-  else if(!novaConclusao){
+
+  else if(
+    !novaConclusao
+  ){
 
     instrucao.innerHTML = `
+
       Você já descobriu este sinal.
+
       <br>
-      <strong>Encontre uma estação diferente pela festa.</strong>
+
+      <strong>
+        Encontre uma estação diferente pela festa.
+      </strong>
+
     `;
 
   }
+
   else{
 
     instrucao.innerHTML = `
+
       Continue explorando a festa.
+
       <br>
-      <strong>Encontre outro QR Code.</strong>
+
+      <strong>
+        Encontre outro QR Code.
+      </strong>
+
     `;
 
   }
@@ -1440,6 +2152,7 @@ async function iniciar(){
     mostrarCadastro();
 
   }
+
   else{
 
     abrirExperiencia();
@@ -1449,32 +2162,47 @@ async function iniciar(){
 }
 
 
-document.getElementById("btnCadastro")
-  .addEventListener(
-    "click",
-    cadastrarParticipante
-  );
+/* =====================================================
+   EVENTOS
+===================================================== */
+
+document.getElementById(
+  "btnCadastro"
+).addEventListener(
+  "click",
+  cadastrarParticipante
+);
 
 
-document.getElementById("campoNome")
-  .addEventListener(
-    "keydown",
-    event=>{
+document.getElementById(
+  "campoNome"
+).addEventListener(
+  "keydown",
+  evento=>{
 
-      if(event.key === "Enter"){
-        cadastrarParticipante();
-      }
+    if(
+      evento.key === "Enter"
+    ){
+
+      cadastrarParticipante();
 
     }
-  );
+
+  }
+);
 
 
-document.getElementById("btnResponder")
-  .addEventListener(
-    "click",
-    responder
-  );
+document.getElementById(
+  "btnResponder"
+).addEventListener(
+  "click",
+  responder
+);
 
+
+/* =====================================================
+   START
+===================================================== */
 
 iniciar();
 
