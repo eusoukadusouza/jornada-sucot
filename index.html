@@ -1,1000 +1,1482 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#f4ead7">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f4ead7">
 
-  <title>Jornada de Sucot</title>
+<title>Jornada de Sucot</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
 
-    :root {
-      --areia: #f4ead7;
-      --areia-clara: #fbf6ec;
-      --dourado: #b78738;
-      --dourado-escuro: #856126;
-      --marrom: #34281d;
-      --verde: #65704b;
-      --branco: rgba(255,255,255,.74);
-      --sombra: 0 14px 40px rgba(77,55,25,.10);
-    }
+:root{
+  --areia:#f4ead7;
+  --claro:#fbf6ec;
+  --dourado:#b78738;
+  --douradoEscuro:#856126;
+  --marrom:#34281d;
+  --verde:#65704b;
+}
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+*{box-sizing:border-box;margin:0;padding:0}
 
-    html {
-      min-height: 100%;
-      background: var(--areia);
-    }
+body{
+  min-height:100vh;
+  font-family:'Montserrat',sans-serif;
+  color:var(--marrom);
+  background:
+    radial-gradient(circle at 80% 5%,rgba(209,167,90,.23),transparent 28%),
+    linear-gradient(180deg,#fbf6eb,#f3e5cb);
+}
 
-    body {
-      min-height: 100vh;
-      font-family: 'Montserrat', sans-serif;
-      color: var(--marrom);
-      background:
-        radial-gradient(circle at 80% 5%, rgba(209,167,90,.23), transparent 28%),
-        linear-gradient(180deg, #fbf6eb 0%, #f3e5cb 100%);
-    }
+button,input{font:inherit}
 
-    button, input {
-      font: inherit;
-    }
+button{cursor:pointer}
 
-    button {
-      cursor: pointer;
-    }
+.app{
+  max-width:520px;
+  min-height:100vh;
+  margin:auto;
+  overflow:hidden;
+  position:relative;
+  background:linear-gradient(rgba(251,246,236,.94),rgba(244,234,215,.97));
+}
 
-    .app {
-      width: 100%;
-      max-width: 520px;
-      min-height: 100vh;
-      margin: auto;
-      overflow: hidden;
-      position: relative;
-      background:
-        linear-gradient(rgba(251,246,236,.92), rgba(244,234,215,.96));
-    }
 
-    .topo {
-      padding: 34px 26px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
+/* ==============================
+   CADASTRO
+================================ */
 
-    .mini {
-      font-size: 10px;
-      letter-spacing: 5px;
-      color: var(--dourado-escuro);
-      text-transform: uppercase;
-    }
+.cadastro{
+  min-height:100vh;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:38px 27px;
+  text-align:center;
+}
 
-    .logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 48px;
-      line-height: .9;
-      color: var(--dourado-escuro);
-      font-weight: 600;
-    }
+.cadastro-box{
+  width:100%;
+}
 
-    .sublogo {
-      font-size: 8px;
-      letter-spacing: 3px;
-      margin-top: 10px;
-      text-transform: uppercase;
-      color: #8b7350;
-    }
+.cadastro-simbolo{
+  font-size:40px;
+  margin-bottom:22px;
+}
 
-    .numero-estacao {
-      text-align: right;
-    }
+.mini{
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--douradoEscuro);
+}
 
-    .numero-estacao strong {
-      display: block;
-      margin-top: 7px;
-      font-size: 13px;
-      letter-spacing: 2px;
-    }
+.cadastro h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:57px;
+  color:var(--douradoEscuro);
+  line-height:.88;
+  margin:13px 0 12px;
+}
 
-    .progresso {
-      display: flex;
-      justify-content: flex-end;
-      gap: 6px;
-      margin-top: 13px;
-    }
+.cadastro-sub{
+  font-size:11px;
+  letter-spacing:3px;
+  color:#9a7540;
+  text-transform:uppercase;
+}
 
-    .ponto {
-      width: 12px;
-      height: 12px;
-      border: 1px solid #c9ad7a;
-      border-radius: 50%;
-      background: transparent;
-    }
+.cadastro-texto{
+  max-width:350px;
+  margin:30px auto;
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  line-height:1.4;
+}
 
-    .ponto.ativo {
-      background: var(--dourado);
-      border-color: var(--dourado);
-    }
+.campo{
+  text-align:left;
+  margin-top:30px;
+}
 
-    .hero {
-      height: 260px;
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(to bottom, transparent 45%, #f7eddc 100%),
-        radial-gradient(circle at 70% 48%, rgba(210,158,70,.45), transparent 18%),
-        linear-gradient(145deg, #dfc28f, #9d7950);
-    }
+.campo label{
+  display:block;
+  font-size:9px;
+  letter-spacing:3px;
+  font-weight:700;
+  color:var(--douradoEscuro);
+  margin:0 0 9px 6px;
+}
 
-    .hero::before {
-      content: "";
-      position: absolute;
-      width: 230px;
-      height: 135px;
-      right: 24px;
-      bottom: 38px;
-      border: 3px solid rgba(255,248,225,.75);
-      border-top: 14px solid rgba(76,83,48,.78);
-      background:
-        linear-gradient(90deg,
-        rgba(255,250,230,.45),
-        rgba(192,140,55,.34));
-      box-shadow: 0 0 55px rgba(255,192,81,.50);
-      transform: perspective(400px) rotateY(-5deg);
-    }
+.campo input{
+  width:100%;
+  border:1px solid rgba(155,107,32,.2);
+  border-radius:20px;
+  background:rgba(255,255,255,.65);
+  padding:19px;
+  font-size:17px;
+  outline:none;
+  color:var(--marrom);
+}
 
-    .hero::after {
-      content: "✦";
-      position: absolute;
-      right: 120px;
-      bottom: 85px;
-      color: #ffe3a3;
-      font-size: 42px;
-      text-shadow: 0 0 35px #ffc45b;
-    }
+.campo input:focus{
+  border-color:var(--dourado);
+}
 
-    .conteudo {
-      padding: 5px 26px 42px;
-      position: relative;
-    }
+.erro{
+  min-height:20px;
+  color:#9d443b;
+  font-size:11px;
+  margin-top:10px;
+}
 
-    .icone {
-      font-size: 29px;
-      margin-bottom: 8px;
-    }
 
-    .titulo {
-      font-family: 'Cormorant Garamond', serif;
-      color: var(--dourado-escuro);
-      font-size: 39px;
-      font-weight: 600;
-      line-height: 1;
-    }
+/* ==============================
+   BOTÕES
+================================ */
 
-    .profetico {
-      font-size: 11px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: #a0783a;
-      margin-top: 8px;
-    }
+.botao{
+  width:100%;
+  min-height:65px;
+  border:0;
+  border-radius:40px;
+  margin-top:20px;
+  background:linear-gradient(90deg,#9b6b20,#c79843);
+  color:white;
+  letter-spacing:3px;
+  font-weight:600;
+  box-shadow:0 13px 25px rgba(135,92,27,.20);
+}
 
-    .linha {
-      width: 55px;
-      height: 2px;
-      background: #c69b53;
-      margin: 22px 0;
-    }
+.botao:disabled{
+  opacity:.4;
+}
 
-    .pergunta {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 27px;
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 23px;
-    }
 
-    .alternativas {
-      display: grid;
-      gap: 11px;
-    }
+/* ==============================
+   TOPO
+================================ */
 
-    .alternativa {
-      width: 100%;
-      border: 1px solid rgba(153,117,62,.12);
-      background: var(--branco);
-      border-radius: 22px;
-      min-height: 69px;
-      padding: 13px 17px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      text-align: left;
-      color: var(--marrom);
-      box-shadow: 0 8px 22px rgba(86,58,22,.05);
-      transition: .2s ease;
-    }
+.topo{
+  padding:31px 25px 17px;
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+}
 
-    .alternativa:active {
-      transform: scale(.985);
-    }
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:47px;
+  line-height:.88;
+  color:var(--douradoEscuro);
+}
 
-    .alternativa.selecionada {
-      border-color: var(--dourado);
-      background: #fff8e9;
-      box-shadow: 0 8px 25px rgba(183,135,56,.15);
-    }
+.sublogo{
+  font-size:8px;
+  letter-spacing:2.7px;
+  margin-top:10px;
+  text-transform:uppercase;
+  color:#8b7350;
+}
 
-    .letra {
-      min-width: 43px;
-      height: 43px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: #ead5ac;
-      color: #725126;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
-      font-weight: 700;
-    }
+.numero-estacao{
+  text-align:right;
+}
 
-    .texto-alternativa {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20px;
-      line-height: 1.1;
-    }
+.numero-estacao strong{
+  display:block;
+  margin-top:7px;
+  font-size:12px;
+  letter-spacing:2px;
+}
 
-    .botao {
-      width: 100%;
-      min-height: 65px;
-      border: 0;
-      border-radius: 40px;
-      margin-top: 22px;
-      background: linear-gradient(90deg, #9b6b20, #c79843);
-      color: white;
-      letter-spacing: 4px;
-      font-weight: 600;
-      box-shadow: 0 13px 25px rgba(135,92,27,.20);
-    }
 
-    .botao:disabled {
-      opacity: .35;
-      cursor: not-allowed;
-    }
+/* ==============================
+   PROGRESSO
+================================ */
 
-    /* TELA DE REVELAÇÃO */
+.progresso{
+  display:flex;
+  gap:7px;
+  margin-top:13px;
+}
 
-    .revelacao {
-      display: none;
-      animation: subir .55s ease;
-    }
+.ponto{
+  width:12px;
+  height:12px;
+  border:1px solid #c9ad7a;
+  border-radius:50%;
+}
 
-    @keyframes subir {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.ponto.ativo{
+  background:var(--dourado);
+  border-color:var(--dourado);
+}
 
-    .sinal {
-      font-size: 10px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--dourado);
-      margin-bottom: 12px;
-    }
 
-    .frase-revelacao {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 35px;
-      line-height: 1;
-      color: var(--dourado-escuro);
-      margin-bottom: 20px;
-    }
+/* ==============================
+   HERO
+================================ */
 
-    .explicacao {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
-      line-height: 1.45;
-      color: #4d4032;
-    }
+.hero{
+  height:255px;
+  position:relative;
+  overflow:hidden;
+  background:
+    linear-gradient(to bottom,transparent 45%,#f7eddc 100%),
+    radial-gradient(circle at 70% 48%,rgba(210,158,70,.48),transparent 18%),
+    linear-gradient(145deg,#dfc28f,#9d7950);
+}
 
-    .versiculo {
-      margin-top: 24px;
-      padding: 22px;
-      border-left: 3px solid var(--dourado);
-      background: rgba(255,255,255,.45);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 19px;
-      line-height: 1.4;
-      font-style: italic;
-    }
+.hero::before{
+  content:"";
+  position:absolute;
+  width:230px;
+  height:135px;
+  right:24px;
+  bottom:38px;
+  border:3px solid rgba(255,248,225,.75);
+  border-top:14px solid rgba(76,83,48,.78);
+  background:linear-gradient(90deg,rgba(255,250,230,.45),rgba(192,140,55,.34));
+  box-shadow:0 0 55px rgba(255,192,81,.50);
+}
 
-    .referencia {
-      display: block;
-      margin-top: 9px;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 10px;
-      letter-spacing: 2px;
-      font-style: normal;
-      color: var(--dourado-escuro);
-    }
+.hero::after{
+  content:"✦";
+  position:absolute;
+  right:120px;
+  bottom:85px;
+  color:#ffe3a3;
+  font-size:42px;
+  text-shadow:0 0 35px #ffc45b;
+}
 
-    .aplicacao {
-      margin-top: 23px;
-      padding: 22px;
-      border-radius: 20px;
-      background: #e9dcc0;
-    }
 
-    .aplicacao small {
-      display: block;
-      color: var(--dourado-escuro);
-      letter-spacing: 3px;
-      margin-bottom: 9px;
-      font-weight: 700;
-    }
+/* ==============================
+   ESTAÇÃO
+================================ */
 
-    .aplicacao p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 22px;
-      line-height: 1.25;
-    }
+.conteudo{
+  padding:5px 26px 45px;
+}
 
-    .concluida {
-      margin-top: 25px;
-      text-align: center;
-      padding: 25px 16px;
-    }
+.saudacao{
+  font-size:11px;
+  color:#8a7457;
+  margin-bottom:18px;
+}
 
-    .check {
-      width: 52px;
-      height: 52px;
-      margin: auto auto 13px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: var(--verde);
-      color: white;
-      font-size: 24px;
-    }
+.saudacao strong{
+  color:var(--douradoEscuro);
+}
 
-    .concluida strong {
-      display: block;
-      letter-spacing: 2px;
-      font-size: 12px;
-      color: var(--verde);
-    }
+.icone{
+  font-size:28px;
+}
 
-    .contador {
-      margin-top: 10px;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 21px;
-    }
+.titulo{
+  font-family:'Cormorant Garamond',serif;
+  color:var(--douradoEscuro);
+  font-size:39px;
+  line-height:1;
+}
 
-    .instrucao {
-      margin-top: 14px;
-      font-size: 12px;
-      line-height: 1.6;
-      color: #756650;
-    }
+.profetico{
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:#a0783a;
+  margin-top:8px;
+}
 
-    /* ENTRADA SEM QR VÁLIDO */
+.linha{
+  width:55px;
+  height:2px;
+  background:#c69b53;
+  margin:22px 0;
+}
 
-    .inicio {
-      display: none;
-      padding: 70px 28px;
-      min-height: 100vh;
-      align-items: center;
-    }
+.pergunta{
+  font-family:'Cormorant Garamond',serif;
+  font-size:27px;
+  line-height:1.15;
+  margin-bottom:23px;
+}
 
-    .inicio-box {
-      width: 100%;
-      text-align: center;
-    }
+.alternativas{
+  display:grid;
+  gap:11px;
+}
 
-    .inicio h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 57px;
-      color: var(--dourado-escuro);
-      line-height: .9;
-    }
+.alternativa{
+  width:100%;
+  border:1px solid rgba(153,117,62,.12);
+  background:rgba(255,255,255,.72);
+  border-radius:22px;
+  min-height:69px;
+  padding:13px 17px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  text-align:left;
+  color:var(--marrom);
+  box-shadow:0 8px 22px rgba(86,58,22,.05);
+}
 
-    .inicio p {
-      margin: 22px auto;
-      max-width: 360px;
-      line-height: 1.7;
-      font-size: 13px;
-      color: #76634a;
-    }
+.alternativa.selecionada{
+  border-color:var(--dourado);
+  background:#fff8e9;
+}
 
-    .aguarde {
-      padding: 22px;
-      border: 1px solid rgba(183,135,56,.25);
-      border-radius: 22px;
-      margin-top: 30px;
-      background: rgba(255,255,255,.42);
-      font-size: 12px;
-      line-height: 1.6;
-    }
+.letra{
+  min-width:43px;
+  height:43px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#ead5ac;
+  color:#725126;
+  font-family:'Cormorant Garamond',serif;
+  font-size:21px;
+  font-weight:700;
+}
 
-    @media (min-width: 700px) {
-      body {
-        padding: 25px 0;
-      }
+.texto-alternativa{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;
+  line-height:1.1;
+}
 
-      .app {
-        min-height: calc(100vh - 50px);
-        border-radius: 34px;
-        box-shadow: var(--sombra);
-      }
-    }
-  </style>
+
+/* ==============================
+   REVELAÇÃO
+================================ */
+
+.revelacao{
+  display:none;
+  animation:subir .5s ease;
+}
+
+@keyframes subir{
+  from{opacity:0;transform:translateY(15px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.sinal{
+  font-size:10px;
+  letter-spacing:4px;
+  color:var(--dourado);
+  margin-bottom:12px;
+}
+
+.frase-revelacao{
+  font-family:'Cormorant Garamond',serif;
+  font-size:35px;
+  line-height:1;
+  color:var(--douradoEscuro);
+  margin-bottom:20px;
+}
+
+.explicacao{
+  font-family:'Cormorant Garamond',serif;
+  font-size:21px;
+  line-height:1.45;
+}
+
+.versiculo{
+  margin-top:24px;
+  padding:22px;
+  border-left:3px solid var(--dourado);
+  background:rgba(255,255,255,.45);
+  font-family:'Cormorant Garamond',serif;
+  font-size:19px;
+  line-height:1.4;
+  font-style:italic;
+}
+
+.referencia{
+  display:block;
+  margin-top:9px;
+  font-family:'Montserrat',sans-serif;
+  font-size:10px;
+  letter-spacing:2px;
+  font-style:normal;
+  color:var(--douradoEscuro);
+}
+
+.aplicacao{
+  margin-top:23px;
+  padding:22px;
+  border-radius:20px;
+  background:#e9dcc0;
+}
+
+.aplicacao small{
+  display:block;
+  color:var(--douradoEscuro);
+  letter-spacing:3px;
+  margin-bottom:9px;
+  font-weight:700;
+}
+
+.aplicacao p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;
+  line-height:1.25;
+}
+
+.concluida{
+  margin-top:25px;
+  text-align:center;
+  padding:25px 12px;
+}
+
+.check{
+  width:52px;
+  height:52px;
+  margin:auto auto 13px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--verde);
+  color:white;
+  font-size:24px;
+}
+
+.contador{
+  margin-top:14px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;
+}
+
+.instrucao{
+  margin-top:18px;
+  font-size:12px;
+  line-height:1.7;
+  color:#756650;
+}
+
+
+/* ==============================
+   SEM QR
+================================ */
+
+.inicio{
+  min-height:100vh;
+  display:none;
+  align-items:center;
+  text-align:center;
+  padding:40px 28px;
+}
+
+.inicio h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:57px;
+  color:var(--douradoEscuro);
+  line-height:.9;
+}
+
+.inicio p{
+  margin:25px 0;
+  line-height:1.7;
+}
+
+.caixa{
+  padding:23px;
+  border:1px solid rgba(183,135,56,.25);
+  border-radius:22px;
+  background:rgba(255,255,255,.45);
+  font-size:12px;
+  line-height:1.7;
+}
+
+@media(min-width:700px){
+  body{padding:25px 0}
+  .app{
+    border-radius:34px;
+    min-height:calc(100vh - 50px);
+  }
+}
+</style>
 </head>
 
 <body>
 
 <main class="app">
 
-  <!-- TELA QUANDO NÃO HÁ ESTAÇÃO -->
-  <section id="inicio" class="inicio">
-    <div class="inicio-box">
-      <div class="mini">Ministério Apostólico Koinonia</div>
-      <h1>Jornada<br>de Sucot</h1>
+<!-- CADASTRO -->
+<section id="cadastro" class="cadastro">
+  <div class="cadastro-box">
 
-      <p>
-        Cinco sinais estão espalhados pela festa.
-        Cada um revela uma parte da história.
-      </p>
+    <div class="cadastro-simbolo">✦</div>
 
-      <div class="aguarde">
-        <strong>ENCONTRE UM DOS 5 SINAIS</strong><br><br>
-        Escaneie um QR Code espalhado pelo evento para descobrir uma estação.
-      </div>
+    <div class="mini">Ministério Apostólico Koinonia</div>
+
+    <h1>Jornada<br>de Sucot</h1>
+
+    <div class="cadastro-sub">
+      5 sinais • uma mesma presença
     </div>
-  </section>
+
+    <p class="cadastro-texto">
+      Cinco sinais estão espalhados pela festa.
+      Cada descoberta revelará uma parte desta jornada.
+    </p>
+
+    <div class="campo">
+      <label>COMO DEVEMOS CHAMAR VOCÊ?</label>
+
+      <input
+        id="campoNome"
+        type="text"
+        maxlength="60"
+        autocomplete="name"
+        placeholder="Digite seu nome">
+    </div>
+
+    <div id="erroCadastro" class="erro"></div>
+
+    <button
+      id="btnCadastro"
+      class="botao">
+      INICIAR MINHA JORNADA →
+    </button>
+
+  </div>
+</section>
 
 
-  <!-- ESTAÇÃO -->
-  <section id="telaEstacao">
+<!-- SEM ESTAÇÃO -->
+<section id="inicio" class="inicio">
+  <div>
+    <div class="mini">Jornada de</div>
 
-    <header class="topo">
+    <h1>Sucot</h1>
 
-      <div>
-        <div class="mini">Jornada de</div>
-        <div class="logo">SUCOT</div>
-        <div class="sublogo">5 sinais • uma mesma presença</div>
-      </div>
+    <p id="textoInicio">
+      Cinco sinais estão espalhados pela festa.
+    </p>
 
-      <div class="numero-estacao">
-        <span class="mini">Estação</span>
-        <strong id="numeroTopo">01 DE 05</strong>
-
-        <div class="progresso" id="progressoTopo"></div>
-      </div>
-
-    </header>
-
-
-    <div class="hero" id="hero"></div>
+    <div class="caixa">
+      <strong>ENCONTRE UM DOS 5 SINAIS</strong>
+      <br><br>
+      Escaneie um QR Code espalhado pelo evento para descobrir uma estação.
+    </div>
+  </div>
+</section>
 
 
-    <section class="conteudo">
+<!-- ESTAÇÃO -->
+<section id="telaEstacao" style="display:none">
 
-      <!-- PERGUNTA -->
-      <div id="blocoPergunta">
+<header class="topo">
 
-        <div class="icone" id="icone">🛖</div>
+  <div>
+    <div class="mini">Jornada de</div>
+    <div class="logo">SUCOT</div>
+    <div class="sublogo">5 sinais • uma mesma presença</div>
+  </div>
 
-        <h1 class="titulo" id="titulo">01 · A CABANA</h1>
+  <div class="numero-estacao">
+    <span class="mini">Estação</span>
+    <strong id="numeroTopo"></strong>
+    <div class="progresso" id="progressoTopo"></div>
+  </div>
 
-        <div class="profetico" id="profetico">
-          Deus habita conosco
-        </div>
+</header>
 
-        <div class="linha"></div>
+<div class="hero"></div>
 
-        <h2 class="pergunta" id="pergunta"></h2>
+<section class="conteudo">
 
-        <div class="alternativas" id="alternativas"></div>
+<div class="saudacao" id="saudacao"></div>
 
-        <button
-          class="botao"
-          id="btnResponder"
-          disabled
-          onclick="responder()">
-          RESPONDER →
-        </button>
+<!-- PERGUNTA -->
+<div id="blocoPergunta">
 
-      </div>
+  <div class="icone" id="icone"></div>
+
+  <h1 class="titulo" id="titulo"></h1>
+
+  <div class="profetico" id="profetico"></div>
+
+  <div class="linha"></div>
+
+  <h2 class="pergunta" id="pergunta"></h2>
+
+  <div class="alternativas" id="alternativas"></div>
+
+  <button
+    id="btnResponder"
+    class="botao"
+    disabled>
+    RESPONDER →
+  </button>
+
+</div>
 
 
-      <!-- REVELAÇÃO -->
-      <div class="revelacao" id="blocoRevelacao">
+<!-- REVELAÇÃO -->
+<div id="blocoRevelacao" class="revelacao">
 
-        <div class="sinal">
-          Você descobriu um sinal
-        </div>
+  <div class="sinal">
+    VOCÊ DESCOBRIU UM SINAL
+  </div>
 
-        <h2
-          class="frase-revelacao"
-          id="fraseRevelacao">
-        </h2>
+  <h2
+    id="fraseRevelacao"
+    class="frase-revelacao">
+  </h2>
 
-        <p
-          class="explicacao"
-          id="explicacao">
-        </p>
+  <p
+    id="explicacao"
+    class="explicacao">
+  </p>
 
-        <div class="versiculo">
-          <span id="versiculo"></span>
-          <span
-            class="referencia"
-            id="referencia">
-          </span>
-        </div>
+  <div class="versiculo">
+    <span id="versiculo"></span>
+    <span id="referencia" class="referencia"></span>
+  </div>
 
-        <div class="aplicacao">
-          <small>O SINAL PARA NÓS</small>
-          <p id="aplicacao"></p>
-        </div>
+  <div class="aplicacao">
+    <small>O SINAL PARA NÓS</small>
+    <p id="aplicacao"></p>
+  </div>
 
-        <div class="concluida">
+  <div class="concluida">
 
-          <div class="check">✓</div>
+    <div class="check">✓</div>
 
-          <strong id="textoConcluida">
-            ESTAÇÃO DESCOBERTA
-          </strong>
+    <strong id="textoConcluida"></strong>
 
-          <div
-            class="progresso"
-            id="progressoFinal"
-            style="justify-content:center;margin-top:18px;">
-          </div>
+    <div
+      id="progressoFinal"
+      class="progresso"
+      style="justify-content:center;margin-top:18px">
+    </div>
 
-          <div
-            class="contador"
-            id="contador">
-          </div>
+    <div id="contador" class="contador"></div>
 
-          <p class="instrucao">
-            Continue explorando a festa.<br>
-            <strong>Encontre outro QR Code.</strong>
-          </p>
+    <p class="instrucao" id="instrucaoFinal">
+      Continue explorando a festa.
+      <br>
+      <strong>Encontre outro QR Code.</strong>
+    </p>
 
-        </div>
+  </div>
 
-      </div>
+</div>
 
-    </section>
-
-  </section>
+</section>
+</section>
 
 </main>
 
 
-<script>
+<script type="module">
+
+/* =====================================================
+   FIREBASE
+===================================================== */
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  updateDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.4.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDRWRq6PsAmEkVjGMPdCz-UGwuIdnCJG9g",
+  authDomain: "jornada-sucot.firebaseapp.com",
+  projectId: "jornada-sucot",
+  storageBucket: "jornada-sucot.firebasestorage.app",
+  messagingSenderId: "9822470892",
+  appId: "1:9822470892:web:5ec54e14a5dfd928e89bc9"
+};
+
+
+const firebaseApp =
+  initializeApp(firebaseConfig);
+
+const db =
+  getFirestore(firebaseApp);
+
+
+/* =====================================================
+   ESTAÇÕES
+===================================================== */
+
+const estacoes = {
+
+1:{
+  nome:"A CABANA",
+  icone:"🛖",
+  profetico:"Deus habita conosco",
+
+  pergunta:
+  "Por que Deus mandou Israel habitar em cabanas durante a Festa de Sucot?",
+
+  alternativas:[
+    "Porque não tinham casas.",
+    "Para lembrar que habitaram em cabanas quando Deus os tirou do Egito.",
+    "Porque precisavam se proteger do calor.",
+    "Porque era o costume dos povos do deserto."
+  ],
+
+  correta:1,
+
+  frase:
+  "NÃO ERAM AS PAREDES QUE OS SUSTENTAVAM.",
+
+  explicacao:
+  "Durante Sucot, Israel habitava em cabanas para se lembrar da jornada depois da saída do Egito. No deserto, eles eram frágeis — mas não estavam desamparados. Deus estava com eles.",
+
+  versiculo:
+  "“Eu fiz habitar os filhos de Israel em cabanas, quando os tirei da terra do Egito.”",
+
+  referencia:
+  "LEVÍTICO 23:43",
+
+  aplicacao:
+  "Nossa segurança não está apenas naquilo que construímos ao nosso redor. Está no Deus que habita conosco."
+},
+
+2:{
+  nome:"SEGUNDO SINAL",
+  icone:"✦",
+  profetico:"A jornada continua",
+  pergunta:"Esta estação será revelada em breve.",
+  alternativas:["Descobrir este sinal"],
+  correta:0,
+  frase:"VOCÊ ENCONTROU O SEGUNDO SINAL.",
+  explicacao:"Esta experiência será construída aqui.",
+  versiculo:"",
+  referencia:"",
+  aplicacao:"Continue a jornada."
+},
+
+3:{
+  nome:"TERCEIRO SINAL",
+  icone:"✦",
+  profetico:"A jornada continua",
+  pergunta:"Esta estação será revelada em breve.",
+  alternativas:["Descobrir este sinal"],
+  correta:0,
+  frase:"VOCÊ ENCONTROU O TERCEIRO SINAL.",
+  explicacao:"Esta experiência será construída aqui.",
+  versiculo:"",
+  referencia:"",
+  aplicacao:"Continue a jornada."
+},
+
+4:{
+  nome:"QUARTO SINAL",
+  icone:"✦",
+  profetico:"A jornada continua",
+  pergunta:"Esta estação será revelada em breve.",
+  alternativas:["Descobrir este sinal"],
+  correta:0,
+  frase:"VOCÊ ENCONTROU O QUARTO SINAL.",
+  explicacao:"Esta experiência será construída aqui.",
+  versiculo:"",
+  referencia:"",
+  aplicacao:"Continue a jornada."
+},
+
+5:{
+  nome:"QUINTO SINAL",
+  icone:"✦",
+  profetico:"A jornada se completa",
+  pergunta:"Esta estação será revelada em breve.",
+  alternativas:["Descobrir este sinal"],
+  correta:0,
+  frase:"VOCÊ ENCONTROU O QUINTO SINAL.",
+  explicacao:"Esta experiência será construída aqui.",
+  versiculo:"",
+  referencia:"",
+  aplicacao:"Continue a jornada."
+}
+
+};
+
+
+/* =====================================================
+   ESTADO
+===================================================== */
+
+const params =
+  new URLSearchParams(window.location.search);
+
+const numeroEstacao =
+  Number(params.get("estacao"));
+
+let participanteId =
+  localStorage.getItem("sucotParticipanteId");
+
+let participanteNome =
+  localStorage.getItem("sucotParticipanteNome");
+
+let progresso = [];
+
+let alternativaSelecionada = null;
+
+
+/* =====================================================
+   UTILIDADES
+===================================================== */
+
+function gerarId(){
+
+  if(window.crypto && crypto.randomUUID){
+    return crypto.randomUUID();
+  }
+
+  return "p-" +
+    Date.now() +
+    "-" +
+    Math.random().toString(36).slice(2);
+
+}
+
+
+function primeiroNome(nome){
+
+  return nome
+    .trim()
+    .split(/\s+/)[0];
+
+}
+
+
+function desenharProgresso(elemento){
+
+  elemento.innerHTML = "";
+
+  for(let i=1;i<=5;i++){
+
+    const ponto =
+      document.createElement("span");
+
+    ponto.className =
+      progresso.includes(i)
+      ? "ponto ativo"
+      : "ponto";
+
+    elemento.appendChild(ponto);
+  }
+
+}
+
+
+/* =====================================================
+   CADASTRO
+===================================================== */
+
+async function cadastrarParticipante(){
+
+  const campo =
+    document.getElementById("campoNome");
+
+  const erro =
+    document.getElementById("erroCadastro");
+
+  const botao =
+    document.getElementById("btnCadastro");
+
+  const nome =
+    campo.value.trim()
+      .replace(/\s+/g," ");
+
+  if(nome.length < 2){
+
+    erro.textContent =
+      "Digite seu nome para iniciar.";
+
+    return;
+  }
+
+  erro.textContent = "";
+
+  botao.disabled = true;
+  botao.textContent = "INICIANDO...";
+
+
+  try{
+
+    participanteId = gerarId();
+    participanteNome = nome;
+
+    const referencia =
+      doc(db,"participantes",participanteId);
+
+    await setDoc(referencia,{
+      nome:nome,
+      estacoes:[],
+      totalConcluido:0,
+      jornadaCompleta:false,
+      premioEntregue:false,
+      criadoEm:serverTimestamp(),
+      atualizadoEm:serverTimestamp()
+    });
+
+
+    localStorage.setItem(
+      "sucotParticipanteId",
+      participanteId
+    );
+
+    localStorage.setItem(
+      "sucotParticipanteNome",
+      participanteNome
+    );
+
+
+    progresso = [];
+
+    abrirExperiencia();
+
+  }
+  catch(erroFirebase){
+
+    console.error(erroFirebase);
+
+    erro.textContent =
+      "Não conseguimos iniciar agora. Tente novamente.";
+
+    botao.disabled = false;
+    botao.textContent =
+      "INICIAR MINHA JORNADA →";
+
+  }
+
+}
+
+
+/* =====================================================
+   BUSCAR PARTICIPANTE
+===================================================== */
+
+async function carregarParticipante(){
+
+  if(!participanteId){
+    return false;
+  }
+
+  try{
+
+    const referencia =
+      doc(db,"participantes",participanteId);
+
+    const snapshot =
+      await getDoc(referencia);
+
+
+    if(!snapshot.exists()){
+
+      localStorage.removeItem(
+        "sucotParticipanteId"
+      );
+
+      localStorage.removeItem(
+        "sucotParticipanteNome"
+      );
+
+      participanteId = null;
+      participanteNome = null;
+
+      return false;
+    }
+
+
+    const dados =
+      snapshot.data();
+
+    participanteNome =
+      dados.nome;
+
+    progresso =
+      Array.isArray(dados.estacoes)
+      ? dados.estacoes
+      : [];
+
+
+    localStorage.setItem(
+      "sucotParticipanteNome",
+      participanteNome
+    );
+
+
+    return true;
+
+  }
+  catch(erro){
+
+    console.error(erro);
+
+    /*
+      Se houver uma falha momentânea de conexão,
+      mantemos a identidade local.
+    */
+
+    return !!participanteNome;
+
+  }
+
+}
+
+
+/* =====================================================
+   MOSTRAR CADASTRO
+===================================================== */
+
+function mostrarCadastro(){
+
+  document.getElementById("cadastro")
+    .style.display = "flex";
+
+  document.getElementById("inicio")
+    .style.display = "none";
+
+  document.getElementById("telaEstacao")
+    .style.display = "none";
+
+}
+
+
+/* =====================================================
+   ABRIR EXPERIÊNCIA
+===================================================== */
+
+function abrirExperiencia(){
+
+  document.getElementById("cadastro")
+    .style.display = "none";
+
+
+  if(!estacoes[numeroEstacao]){
+
+    document.getElementById("inicio")
+      .style.display = "flex";
+
+    document.getElementById("telaEstacao")
+      .style.display = "none";
+
+    document.getElementById("textoInicio")
+      .innerHTML =
+      `<strong>${primeiroNome(participanteNome)}</strong>, sua jornada começou.<br>
+       Encontre os sinais espalhados pela festa.`;
+
+    return;
+  }
+
+
+  document.getElementById("inicio")
+    .style.display = "none";
+
+  document.getElementById("telaEstacao")
+    .style.display = "block";
+
+
+  carregarEstacao();
+
+}
+
+
+/* =====================================================
+   CARREGAR ESTAÇÃO
+===================================================== */
+
+function carregarEstacao(){
+
+  const dados =
+    estacoes[numeroEstacao];
+
+  const numero =
+    String(numeroEstacao)
+      .padStart(2,"0");
+
+
+  document.getElementById("numeroTopo")
+    .textContent =
+    `${numero} DE 05`;
+
+
+  document.getElementById("saudacao")
+    .innerHTML =
+    `<strong>${primeiroNome(participanteNome)}</strong>, você encontrou um sinal.`;
+
+
+  document.getElementById("icone")
+    .textContent =
+    dados.icone;
+
+
+  document.getElementById("titulo")
+    .textContent =
+    `${numero} · ${dados.nome}`;
+
+
+  document.getElementById("profetico")
+    .textContent =
+    dados.profetico;
+
+
+  document.getElementById("pergunta")
+    .textContent =
+    dados.pergunta;
+
+
+  desenharProgresso(
+    document.getElementById("progressoTopo")
+  );
+
 
   /*
-  ==========================================================
-  AS 5 ESTAÇÕES MORAM AQUI
-  ==========================================================
-
-  Podemos alterar cada uma independentemente depois.
+    SE ESTAÇÃO JÁ FOI RESPONDIDA
   */
 
-  const estacoes = {
+  if(progresso.includes(numeroEstacao)){
 
-    1: {
-      nome: "A CABANA",
-      icone: "🛖",
-      profetico: "Deus habita conosco",
+    mostrarRevelacao(dados,false);
 
-      pergunta:
-        "Por que Deus mandou Israel habitar em cabanas durante a Festa de Sucot?",
+    return;
 
-      alternativas: [
-        "Porque não tinham casas.",
-        "Para lembrar que habitaram em cabanas quando Deus os tirou do Egito.",
-        "Porque precisavam se proteger do calor.",
-        "Porque era o costume dos povos do deserto."
-      ],
+  }
 
-      correta: 1,
 
-      frase:
-        "NÃO ERAM AS PAREDES QUE OS SUSTENTAVAM.",
+  document.getElementById("blocoPergunta")
+    .style.display = "block";
 
-      explicacao:
-        "Durante Sucot, Israel habitava em cabanas para se lembrar da jornada depois da saída do Egito. No deserto, eles eram frágeis — mas não estavam desamparados. Deus estava com eles.",
+  document.getElementById("blocoRevelacao")
+    .style.display = "none";
 
-      versiculo:
-        "“Eu fiz habitar os filhos de Israel em cabanas, quando os tirei da terra do Egito.”",
 
-      referencia:
-        "LEVÍTICO 23:43",
+  const area =
+    document.getElementById("alternativas");
 
-      aplicacao:
-        "Nossa segurança não está apenas naquilo que construímos ao nosso redor. Está no Deus que habita conosco."
-    },
+  area.innerHTML = "";
+
+
+  dados.alternativas.forEach(
+    (texto,indice)=>{
+
+      const botao =
+        document.createElement("button");
+
+      botao.className =
+        "alternativa";
+
+      botao.innerHTML = `
+        <span class="letra">
+          ${String.fromCharCode(65+indice)}
+        </span>
+
+        <span class="texto-alternativa">
+          ${texto}
+        </span>
+      `;
+
+
+      botao.addEventListener(
+        "click",
+        ()=>selecionarAlternativa(
+          indice,
+          botao
+        )
+      );
+
+
+      area.appendChild(botao);
+
+    }
+  );
+
+}
+
+
+/* =====================================================
+   ESCOLHER RESPOSTA
+===================================================== */
+
+function selecionarAlternativa(indice,botao){
+
+  alternativaSelecionada =
+    indice;
+
+  document
+    .querySelectorAll(".alternativa")
+    .forEach(item=>
+      item.classList.remove("selecionada")
+    );
+
+  botao.classList.add("selecionada");
+
+  document.getElementById("btnResponder")
+    .disabled = false;
+
+}
+
+
+/* =====================================================
+   RESPONDER
+===================================================== */
+
+async function responder(){
+
+  if(alternativaSelecionada === null){
+    return;
+  }
+
+
+  const botao =
+    document.getElementById("btnResponder");
+
+  botao.disabled = true;
+  botao.textContent =
+    "REGISTRANDO...";
+
+
+  try{
+
+    /*
+      Só agora a estação é contabilizada.
+    */
+
+    if(!progresso.includes(numeroEstacao)){
+      progresso.push(numeroEstacao);
+    }
+
+
+    progresso.sort((a,b)=>a-b);
+
+
+    const completa =
+      progresso.length === 5;
+
+
+    const referencia =
+      doc(db,"participantes",participanteId);
+
+
+    const dadosAtualizacao = {
+      estacoes:progresso,
+      totalConcluido:progresso.length,
+      jornadaCompleta:completa,
+      atualizadoEm:serverTimestamp()
+    };
 
 
     /*
-      As estações 2–5 serão desenvolvidas com
-      experiências e identidades próprias.
+      Guarda também a resposta e horário
+      específico daquela estação.
     */
 
-    2: {
-      nome: "EM BREVE",
-      icone: "✦",
-      profetico: "Segundo sinal",
-      pergunta: "Esta estação ainda está sendo preparada.",
-      alternativas: [
-        "Continuar a jornada"
-      ],
-      correta: 0,
-      frase: "O SEGUNDO SINAL.",
-      explicacao: "Esta experiência será revelada aqui.",
-      versiculo: "",
-      referencia: "",
-      aplicacao: "Continue sua jornada."
-    },
+    dadosAtualizacao[
+      `estacao${numeroEstacao}`
+    ] = {
+      concluida:true,
+      resposta:alternativaSelecionada,
+      concluidaEm:new Date().toISOString()
+    };
 
-    3: {
-      nome: "EM BREVE",
-      icone: "✦",
-      profetico: "Terceiro sinal",
-      pergunta: "Esta estação ainda está sendo preparada.",
-      alternativas: ["Continuar a jornada"],
-      correta: 0,
-      frase: "O TERCEIRO SINAL.",
-      explicacao: "Esta experiência será revelada aqui.",
-      versiculo: "",
-      referencia: "",
-      aplicacao: "Continue sua jornada."
-    },
 
-    4: {
-      nome: "EM BREVE",
-      icone: "✦",
-      profetico: "Quarto sinal",
-      pergunta: "Esta estação ainda está sendo preparada.",
-      alternativas: ["Continuar a jornada"],
-      correta: 0,
-      frase: "O QUARTO SINAL.",
-      explicacao: "Esta experiência será revelada aqui.",
-      versiculo: "",
-      referencia: "",
-      aplicacao: "Continue sua jornada."
-    },
-
-    5: {
-      nome: "EM BREVE",
-      icone: "✦",
-      profetico: "Quinto sinal",
-      pergunta: "Esta estação ainda está sendo preparada.",
-      alternativas: ["Continuar a jornada"],
-      correta: 0,
-      frase: "O QUINTO SINAL.",
-      explicacao: "Esta experiência será revelada aqui.",
-      versiculo: "",
-      referencia: "",
-      aplicacao: "Continue sua jornada."
+    if(completa){
+      dadosAtualizacao.completouEm =
+        serverTimestamp();
     }
 
-  };
 
-
-  /* ======================================================
-     IDENTIFICA QUAL QR CODE FOI ABERTO
-  ====================================================== */
-
-  const parametros =
-    new URLSearchParams(window.location.search);
-
-  const numeroEstacao =
-    Number(parametros.get("estacao"));
-
-  let alternativaSelecionada = null;
-
-
-  /* ======================================================
-     PROGRESSO LOCAL
-     Depois conectaremos isto ao Firebase.
-  ====================================================== */
-
-  function buscarProgresso() {
-
-    const salvo =
-      localStorage.getItem("jornadaSucotProgresso");
-
-    return salvo
-      ? JSON.parse(salvo)
-      : [];
-
-  }
-
-
-  function salvarEstacao(numero) {
-
-    let progresso = buscarProgresso();
-
-    if (!progresso.includes(numero)) {
-      progresso.push(numero);
-    }
-
-    localStorage.setItem(
-      "jornadaSucotProgresso",
-      JSON.stringify(progresso)
+    await updateDoc(
+      referencia,
+      dadosAtualizacao
     );
 
-    return progresso;
+
+    mostrarRevelacao(
+      estacoes[numeroEstacao],
+      true
+    );
+
+  }
+  catch(erro){
+
+    console.error(erro);
+
+    botao.disabled = false;
+    botao.textContent =
+      "TENTAR NOVAMENTE →";
+
+    alert(
+      "Não conseguimos registrar esta estação. Verifique a internet e tente novamente."
+    );
+
+  }
+
+}
+
+
+/* =====================================================
+   REVELAÇÃO
+===================================================== */
+
+function mostrarRevelacao(dados,novaConclusao){
+
+  document.getElementById("blocoPergunta")
+    .style.display = "none";
+
+  document.getElementById("blocoRevelacao")
+    .style.display = "block";
+
+
+  document.getElementById("fraseRevelacao")
+    .textContent =
+    dados.frase;
+
+
+  document.getElementById("explicacao")
+    .textContent =
+    dados.explicacao;
+
+
+  document.getElementById("versiculo")
+    .textContent =
+    dados.versiculo;
+
+
+  document.getElementById("referencia")
+    .textContent =
+    dados.referencia;
+
+
+  document.getElementById("aplicacao")
+    .textContent =
+    dados.aplicacao;
+
+
+  document.getElementById("textoConcluida")
+    .textContent =
+    `ESTAÇÃO ${String(numeroEstacao).padStart(2,"0")} DESCOBERTA`;
+
+
+  desenharProgresso(
+    document.getElementById("progressoTopo")
+  );
+
+  desenharProgresso(
+    document.getElementById("progressoFinal")
+  );
+
+
+  document.getElementById("contador")
+    .textContent =
+    `${progresso.length} de 5 sinais encontrados`;
+
+
+  const instrucao =
+    document.getElementById("instrucaoFinal");
+
+
+  if(progresso.length === 5){
+
+    instrucao.innerHTML = `
+      <strong>${primeiroNome(participanteNome)}, sua jornada está completa.</strong>
+      <br><br>
+      🎁 Seu presente foi liberado.
+      <br>
+      Procure o local de resgate.
+    `;
+
+  }
+  else if(!novaConclusao){
+
+    instrucao.innerHTML = `
+      Você já descobriu este sinal.
+      <br>
+      <strong>Encontre uma estação diferente pela festa.</strong>
+    `;
+
+  }
+  else{
+
+    instrucao.innerHTML = `
+      Continue explorando a festa.
+      <br>
+      <strong>Encontre outro QR Code.</strong>
+    `;
 
   }
 
 
-  /* ======================================================
-     DESENHA OS 5 PONTOS
-  ====================================================== */
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 
-  function desenharProgresso(elemento, progresso) {
+}
 
-    elemento.innerHTML = "";
 
-    for (let i = 1; i <= 5; i++) {
+/* =====================================================
+   INICIAR
+===================================================== */
 
-      const ponto =
-        document.createElement("span");
+async function iniciar(){
 
-      ponto.className =
-        progresso.includes(i)
-          ? "ponto ativo"
-          : "ponto";
+  const existe =
+    await carregarParticipante();
 
-      elemento.appendChild(ponto);
 
-    }
+  if(!existe){
+
+    mostrarCadastro();
+
+  }
+  else{
+
+    abrirExperiencia();
 
   }
 
-
-  /* ======================================================
-     CARREGA ESTAÇÃO
-  ====================================================== */
-
-  function carregarEstacao() {
-
-    if (!estacoes[numeroEstacao]) {
-
-      document
-        .getElementById("telaEstacao")
-        .style.display = "none";
-
-      document
-        .getElementById("inicio")
-        .style.display = "flex";
-
-      return;
-
-    }
+}
 
 
-    const dados =
-      estacoes[numeroEstacao];
-
-    const numeroFormatado =
-      String(numeroEstacao).padStart(2, "0");
-
-
-    document.getElementById("numeroTopo").textContent =
-      `${numeroFormatado} DE 05`;
-
-    document.getElementById("icone").textContent =
-      dados.icone;
-
-    document.getElementById("titulo").textContent =
-      `${numeroFormatado} · ${dados.nome}`;
-
-    document.getElementById("profetico").textContent =
-      dados.profetico;
-
-    document.getElementById("pergunta").textContent =
-      dados.pergunta;
+document.getElementById("btnCadastro")
+  .addEventListener(
+    "click",
+    cadastrarParticipante
+  );
 
 
-    const areaAlternativas =
-      document.getElementById("alternativas");
+document.getElementById("campoNome")
+  .addEventListener(
+    "keydown",
+    event=>{
 
-    areaAlternativas.innerHTML = "";
-
-
-    dados.alternativas.forEach(
-      (texto, indice) => {
-
-        const botao =
-          document.createElement("button");
-
-        botao.className =
-          "alternativa";
-
-        botao.innerHTML = `
-          <span class="letra">
-            ${String.fromCharCode(65 + indice)}
-          </span>
-
-          <span class="texto-alternativa">
-            ${texto}
-          </span>
-        `;
-
-        botao.onclick =
-          () => selecionarAlternativa(
-            indice,
-            botao
-          );
-
-        areaAlternativas.appendChild(botao);
-
+      if(event.key === "Enter"){
+        cadastrarParticipante();
       }
-    );
 
-
-    desenharProgresso(
-      document.getElementById("progressoTopo"),
-      buscarProgresso()
-    );
-
-  }
-
-
-  /* ======================================================
-     SELEÇÃO
-  ====================================================== */
-
-  function selecionarAlternativa(
-    indice,
-    botao
-  ) {
-
-    alternativaSelecionada =
-      indice;
-
-    document
-      .querySelectorAll(".alternativa")
-      .forEach(item =>
-        item.classList.remove("selecionada")
-      );
-
-    botao.classList.add(
-      "selecionada"
-    );
-
-    document
-      .getElementById("btnResponder")
-      .disabled = false;
-
-  }
-
-
-  /* ======================================================
-     RESPOSTA / REVELAÇÃO
-  ====================================================== */
-
-  function responder() {
-
-    if (alternativaSelecionada === null) {
-      return;
     }
+  );
 
 
-    const dados =
-      estacoes[numeroEstacao];
+document.getElementById("btnResponder")
+  .addEventListener(
+    "click",
+    responder
+  );
 
 
-    const progresso =
-      salvarEstacao(numeroEstacao);
-
-
-    document
-      .getElementById("blocoPergunta")
-      .style.display = "none";
-
-
-    const revelacao =
-      document.getElementById(
-        "blocoRevelacao"
-      );
-
-    revelacao.style.display =
-      "block";
-
-
-    document.getElementById(
-      "fraseRevelacao"
-    ).textContent =
-      dados.frase;
-
-
-    document.getElementById(
-      "explicacao"
-    ).textContent =
-      dados.explicacao;
-
-
-    document.getElementById(
-      "versiculo"
-    ).textContent =
-      dados.versiculo;
-
-
-    document.getElementById(
-      "referencia"
-    ).textContent =
-      dados.referencia;
-
-
-    document.getElementById(
-      "aplicacao"
-    ).textContent =
-      dados.aplicacao;
-
-
-    const numeroFormatado =
-      String(numeroEstacao)
-        .padStart(2, "0");
-
-
-    document.getElementById(
-      "textoConcluida"
-    ).textContent =
-      `ESTAÇÃO ${numeroFormatado} DESCOBERTA`;
-
-
-    desenharProgresso(
-      document.getElementById(
-        "progressoFinal"
-      ),
-      progresso
-    );
-
-
-    desenharProgresso(
-      document.getElementById(
-        "progressoTopo"
-      ),
-      progresso
-    );
-
-
-    document.getElementById(
-      "contador"
-    ).textContent =
-      `${progresso.length} de 5 sinais encontrados`;
-
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
-
-
-  /* ======================================================
-     INICIA
-  ====================================================== */
-
-  carregarEstacao();
+iniciar();
 
 </script>
 
