@@ -308,7 +308,6 @@ button{
   right:-8%;
   bottom:30px;
   height:120px;
-
   background:
     radial-gradient(
       ellipse at 20% 100%,
@@ -322,7 +321,6 @@ button{
       #b78246 62%,
       transparent 64%
     );
-
   opacity:.95;
 }
 
@@ -343,10 +341,75 @@ button{
 
 
 /* =====================================================
+   HERO — ESTAÇÃO 3 / ÁGUA
+===================================================== */
+
+.hero.estacao3{
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255,255,255,.02) 0%,
+      rgba(220,239,235,.06) 45%,
+      #f7eddc 100%
+    ),
+    radial-gradient(
+      circle at 72% 23%,
+      rgba(255,229,154,.95) 0%,
+      rgba(224,184,97,.45) 15%,
+      transparent 36%
+    ),
+    linear-gradient(
+      155deg,
+      #8da09a 0%,
+      #637a75 37%,
+      #76694f 63%,
+      #ad814c 100%
+    );
+}
+
+.hero.estacao3::before{
+  content:"";
+  position:absolute;
+  width:120px;
+  height:260px;
+  left:50%;
+  top:-45px;
+  transform:translateX(-50%) rotate(7deg);
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(209,242,237,.22) 15%,
+      rgba(231,251,247,.82) 45%,
+      rgba(172,220,215,.62) 70%,
+      transparent 100%
+    );
+  filter:blur(2px);
+  border-radius:
+    45% 55% 58% 42% /
+    20% 30% 70% 80%;
+  box-shadow:
+    0 0 35px rgba(220,245,238,.40);
+}
+
+.hero.estacao3::after{
+  content:"✦";
+  position:absolute;
+  left:50%;
+  bottom:52px;
+  transform:translateX(-50%);
+  color:#ffe3a0;
+  font-size:34px;
+  text-shadow:
+    0 0 18px #ffd06b,
+    0 0 38px rgba(255,215,125,.75);
+}
+
+
+/* =====================================================
    HERO — ESTAÇÕES FUTURAS
 ===================================================== */
 
-.hero.estacao3,
 .hero.estacao4,
 .hero.estacao5{
   background:
@@ -620,6 +683,7 @@ button{
 }
 </style>
 </head>
+
 
 <body>
 
@@ -1075,43 +1139,51 @@ const estacoes = {
 
 
 /* -----------------------------------------------------
-   ESTAÇÃO 03 — EM CONSTRUÇÃO
+   ESTAÇÃO 03 — A ÁGUA
 ----------------------------------------------------- */
 
 3:{
 
   nome:
-  "TERCEIRO SINAL",
+  "A ÁGUA",
 
   icone:
-  "✦",
+  "💧",
 
   profetico:
-  "A jornada continua",
+  "Aquele que sacia",
 
   pergunta:
-  "Esta estação será revelada em breve.",
+  "Durante a Festa de Sucot, em meio à celebração da água, o que Jesus declarou?",
 
   alternativas:[
-    "Descobrir este sinal"
+
+    "Eu sou o pão da vida.",
+
+    "Se alguém tem sede, venha a mim e beba.",
+
+    "Eu sou a porta das ovelhas.",
+
+    "Derrubem este templo e em três dias o levantarei."
+
   ],
 
-  correta:0,
+  correta:1,
 
   frase:
-  "VOCÊ ENCONTROU O TERCEIRO SINAL.",
+  "A FESTA APONTAVA PARA AQUILO QUE JESUS VEIO OFERECER.",
 
   explicacao:
-  "Esta experiência será construída aqui.",
+  "Durante Sucot, a água fazia parte de uma importante celebração ligada à provisão e à esperança. Foi no último e grande dia da festa que Jesus se levantou e fez um convite extraordinário: quem tivesse sede deveria vir a Ele e beber. João explica que Jesus estava falando do Espírito que receberiam aqueles que cressem nele.",
 
   versiculo:
-  "",
+  "“Se alguém tem sede, venha a mim e beba.”",
 
   referencia:
-  "",
+  "JOÃO 7:37–39",
 
   aplicacao:
-  "Continue a jornada."
+  "Há uma sede que nenhuma provisão exterior consegue satisfazer. Cristo não oferece apenas água para o caminho — Ele oferece uma fonte dentro de nós."
 
 },
 
@@ -1635,8 +1707,6 @@ function carregarEstacao(){
     );
 
 
-  /* HERO ESPECÍFICO */
-
   const hero =
     document.getElementById(
       "hero"
@@ -1646,8 +1716,6 @@ function carregarEstacao(){
   hero.className =
     `hero estacao${numeroEstacao}`;
 
-
-  /* CABEÇALHO */
 
   document.getElementById(
     "numeroTopo"
@@ -1692,8 +1760,6 @@ function carregarEstacao(){
     )
   );
 
-
-  /* ESTAÇÃO JÁ CONCLUÍDA */
 
   if(
     progresso.includes(
